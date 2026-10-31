@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c5sh5wsrxb575" path="res://Player/player.tscn" id="1_puhq3"]
 [ext_resource type="Script" uid="uid://bc6q6c74okrly" path="res://Moonlight/moonlight.gd" id="2_rvh4u"]
+[ext_resource type="PackedScene" uid="uid://wrg516q7xe4g" path="res://Ghost/ghost.tscn" id="3_oqqt7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hff6p"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -14,6 +15,10 @@ sky_material = SubResource("ProceduralSkyMaterial_hff6p")
 background_mode = 2
 sky = SubResource("Sky_puhq3")
 glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xrivr"]
+vertices = PackedVector3Array(-4.5, 0.29337648, -4.5, -4.5, 0.29337648, 4.5, 4.5, 0.29337648, 4.5, 4.5, 0.29337648, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrivr"]
 albedo_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
@@ -28,10 +33,13 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1206113737]
 environment = SubResource("Environment_rvh4u")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1605754844]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=133962711]
+navigation_mesh = SubResource("NavigationMesh_xrivr")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" unique_id=1605754844]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=56756119]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=56756119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10662353, 0)
 size = Vector3(10, 0.2, 10)
 material = SubResource("StandardMaterial3D_xrivr")
@@ -49,3 +57,7 @@ spot_angle = 30.0
 script = ExtResource("2_rvh4u")
 player = NodePath("../Player")
 ground_y = -0.1
+
+[node name="Ghost" parent="." unique_id=250297818 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+player = NodePath("../Player")

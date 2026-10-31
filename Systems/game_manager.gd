@@ -2,7 +2,7 @@ extends Node
 
 @export var moonlight: Moonlight
 @export var player: Player
-@export var moon_light_follow_speed: float = 5.0
+@export var moon_light_follow_speed: float = 9.0
 @export var ghost_container: Node3D
 
 var ghosts: Array[Ghost] = []

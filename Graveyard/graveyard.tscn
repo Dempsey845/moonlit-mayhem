@@ -59,13 +59,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6437583, 0, -5.8968515)
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2064649073]
 transform = Transform3D(1, 0, 0, 0, 0.59098685, 0.8066813, 0, -0.8066813, 0.59098685, 0, 7.55209, 10.0930605)
 
-[node name="Moonlight" type="SpotLight3D" parent="." unique_id=884361163]
+[node name="Moonlight" type="SpotLight3D" parent="." unique_id=884361163 node_paths=PackedStringArray("spawn_points")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2, 4, 2)
 light_energy = 4.644
 spot_range = 6.0
 spot_angle = 30.0
 script = ExtResource("2_rvh4u")
 ground_y = -0.1
+shrink_duration = 16.0
+spawn_points = [NodePath("../MoonlightSP"), NodePath("../MoonlightSP2"), NodePath("../MoonlightSP3")]
 
 [node name="Area3D" type="Area3D" parent="Moonlight" unique_id=866341441]
 
@@ -89,3 +91,12 @@ player = NodePath("../../Player")
 [node name="Ghost4" parent="Ghosts" unique_id=1604923520 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3772993, -9.536743e-07, 6.23109)
 player = NodePath("../../Player")
+
+[node name="MoonlightSP" type="Marker3D" parent="." unique_id=193816565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025465965, 0, -0.02279234)
+
+[node name="MoonlightSP2" type="Marker3D" parent="." unique_id=1683753944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.403518, 0, 6.9974766)
+
+[node name="MoonlightSP3" type="Marker3D" parent="." unique_id=1429522450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9903717, 0, -3.7799966)

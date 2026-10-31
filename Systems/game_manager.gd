@@ -20,6 +20,8 @@ func _ready() -> void:
 	moonlight.target_exited_light.connect(_on_target_exited_light)
 	moonlight.current_target = player
 
+	moonlight.non_target_entered_light.connect(_on_moonlight_non_target_entered)
+
 
 func _process(delta: float) -> void:
 	var weight := 1.0 - exp(-moon_light_follow_speed * delta)
@@ -47,3 +49,10 @@ func set_ghosts_fleeing(fleeing: bool) -> void:
 	for ghost in ghosts:
 		if is_instance_valid(ghost):
 			ghost.set_fleeing(fleeing)
+
+func _on_moonlight_non_target_entered(body: Node3D):
+	if !is_moonlight_following:
+		return
+
+	if body is Ghost:
+		print("Ghost hit by light")

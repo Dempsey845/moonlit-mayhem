@@ -4,6 +4,8 @@ extends SpotLight3D
 signal target_entered_light
 signal target_exited_light
 
+signal non_target_entered_light(body: Node3D)
+
 @export var ground_y: float = 0.0
 @export var detection_height: float = 3.0
 
@@ -127,8 +129,14 @@ func _move_to_next_position() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body == current_target and is_visible_in_tree():
+	if !is_visible_in_tree():
+		return
+
+	if body == current_target:
 		_set_target_in_light(true)
+	else:
+		non_target_entered_light.emit(body)
+	
 
 
 func _on_body_exited(body: Node3D) -> void:

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbyfdoyyhd0d4"]
 
 [ext_resource type="PackedScene" uid="uid://c5sh5wsrxb575" path="res://Player/player.tscn" id="1_puhq3"]
+[ext_resource type="Script" uid="uid://bc6q6c74okrly" path="res://Moonlight/moonlight.gd" id="2_rvh4u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hff6p"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,6 +22,7 @@ albedo_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1076600132]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 0.1
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1206113737]
@@ -38,3 +40,12 @@ material = SubResource("StandardMaterial3D_xrivr")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2064649073]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 5.334407, 6.061539)
+
+[node name="Moonlight" type="SpotLight3D" parent="." unique_id=884361163 node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2, 4, 2)
+light_energy = 4.644
+spot_range = 6.0
+spot_angle = 30.0
+script = ExtResource("2_rvh4u")
+player = NodePath("../Player")
+ground_y = -0.1

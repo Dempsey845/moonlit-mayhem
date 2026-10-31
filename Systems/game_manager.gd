@@ -55,4 +55,4 @@ func _on_moonlight_non_target_entered(body: Node3D):
 		return
 
 	if body is Ghost:
-		print("Ghost hit by light")
+		body.die()

@@ -1,7 +1,7 @@
 class_name Ghost
 extends CharacterBody3D
 
-enum State { CHASE, FLEE }
+enum State { CHASE, FLEE, DEAD }
 
 @export var player: Node3D
 @export var chase_speed: float = 3.0
@@ -14,8 +14,19 @@ enum State { CHASE, FLEE }
 var state: State = State.CHASE
 var repath_timer: float = 0.0
 
+var original_collision_layer: int
+var original_collision_mask: int
+
+
+func _ready() -> void:
+	original_collision_layer = collision_layer
+	original_collision_mask = collision_mask
+
 
 func _physics_process(delta: float) -> void:
+	if state == State.DEAD:
+		return
+
 	if not is_instance_valid(player):
 		return
 
@@ -62,7 +73,9 @@ func update_target() -> void:
 			if away.length_squared() < 0.01:
 				away = Vector3.RIGHT
 
-			var flee_target: Vector3 = global_position + away.normalized() * flee_distance
+			var flee_target: Vector3 = (
+				global_position + away.normalized() * flee_distance
+			)
 
 			navigation_agent.target_position = NavigationServer3D.map_get_closest_point(
 				navigation_agent.get_navigation_map(),
@@ -71,5 +84,37 @@ func update_target() -> void:
 
 
 func set_fleeing(fleeing: bool) -> void:
+	if state == State.DEAD:
+		return
+
 	state = State.FLEE if fleeing else State.CHASE
 	repath_timer = 0.0
+
+
+func die() -> void:
+	if state == State.DEAD:
+		return
+
+	state = State.DEAD
+	velocity = Vector3.ZERO
+	set_physics_process(false)
+
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+
+	hide()
+
+
+func revive(spawn_position: Vector3) -> void:
+	global_position = spawn_position
+	velocity = Vector3.ZERO
+	repath_timer = 0.0
+	state = State.CHASE
+
+	navigation_agent.target_position = spawn_position
+
+	set_deferred("collision_layer", original_collision_layer)
+	set_deferred("collision_mask", original_collision_mask)
+
+	show()
+	set_physics_process(true)

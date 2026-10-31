@@ -1,3 +1,4 @@
+class_name Ghost
 extends CharacterBody3D
 
 enum State { CHASE, FLEE }
@@ -5,7 +6,7 @@ enum State { CHASE, FLEE }
 @export var player: Node3D
 @export var chase_speed: float = 3.0
 @export var flee_speed: float = 4.0
-@export var flee_distance: float = 8.0
+@export var flee_distance: float = 4.0
 @export var repath_interval: float = 0.25
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D

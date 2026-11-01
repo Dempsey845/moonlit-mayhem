@@ -17,10 +17,14 @@ var repath_timer: float = 0.0
 var original_collision_layer: int
 var original_collision_mask: int
 
+var start_position: Vector3
+
 
 func _ready() -> void:
 	original_collision_layer = collision_layer
 	original_collision_mask = collision_mask
+
+	start_position = global_position
 
 
 func _physics_process(delta: float) -> void:
@@ -105,13 +109,13 @@ func die() -> void:
 	hide()
 
 
-func revive(spawn_position: Vector3) -> void:
-	global_position = spawn_position
+func revive() -> void:
+	global_position = start_position
 	velocity = Vector3.ZERO
 	repath_timer = 0.0
 	state = State.CHASE
 
-	navigation_agent.target_position = spawn_position
+	navigation_agent.target_position = start_position
 
 	set_deferred("collision_layer", original_collision_layer)
 	set_deferred("collision_mask", original_collision_mask)

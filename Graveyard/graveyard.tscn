@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnfr02gvfscka" path="res://Systems/game_manager.gd" id="1_2m5em"]
 [ext_resource type="PackedScene" uid="uid://c5sh5wsrxb575" path="res://Player/player.tscn" id="1_puhq3"]
+[ext_resource type="Script" uid="uid://bcxdautgfy4if" path="res://Systems/ghost_spawner.gd" id="2_1lelr"]
 [ext_resource type="Script" uid="uid://bc6q6c74okrly" path="res://Moonlight/moonlight.gd" id="2_rvh4u"]
 [ext_resource type="PackedScene" uid="uid://wrg516q7xe4g" path="res://Ghost/ghost.tscn" id="3_oqqt7"]
 
@@ -28,10 +29,14 @@ albedo_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
 
 [node name="Graveyard" type="Node3D" unique_id=378118441]
 
-[node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_container")]
+[node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_spawner")]
 script = ExtResource("1_2m5em")
 moonlight = NodePath("../Moonlight")
 player = NodePath("../Player")
+ghost_spawner = NodePath("../GhostSpawner")
+
+[node name="GhostSpawner" type="Node" parent="." unique_id=84861892 node_paths=PackedStringArray("ghost_container")]
+script = ExtResource("2_1lelr")
 ghost_container = NodePath("../Ghosts")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1076600132]
@@ -89,6 +94,42 @@ player = NodePath("../../Player")
 
 [node name="Ghost4" parent="Ghosts" unique_id=1604923520 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3772993, -9.536743e-07, 6.23109)
+player = NodePath("../../Player")
+
+[node name="Ghost5" parent="Ghosts" unique_id=1491107534 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7621, -1.9073486e-06, 0.7538872)
+player = NodePath("../../Player")
+
+[node name="Ghost6" parent="Ghosts" unique_id=1180361364 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.897991, -2.861023e-06, -7.6761713)
+player = NodePath("../../Player")
+
+[node name="Ghost7" parent="Ghosts" unique_id=1783376119 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.644883, -3.8146973e-06, 1.9613447)
+player = NodePath("../../Player")
+
+[node name="Ghost8" parent="Ghosts" unique_id=670884773 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7437701, -4.7683716e-06, 7.012612)
+player = NodePath("../../Player")
+
+[node name="Ghost9" parent="Ghosts" unique_id=2019152283 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7376575, -3.8146973e-06, -7.8184886)
+player = NodePath("../../Player")
+
+[node name="Ghost10" parent="Ghosts" unique_id=1464912033 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.570692, -3.8146973e-06, 3.471211)
+player = NodePath("../../Player")
+
+[node name="Ghost11" parent="Ghosts" unique_id=175797724 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16193, -4.7683716e-06, -2.182788)
+player = NodePath("../../Player")
+
+[node name="Ghost12" parent="Ghosts" unique_id=1588996048 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.775609, -4.7683716e-06, 3.9407158)
+player = NodePath("../../Player")
+
+[node name="Ghost13" parent="Ghosts" unique_id=1828244439 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6340313, -4.7683716e-06, -3.068523)
 player = NodePath("../../Player")
 
 [node name="MoonlightSP" type="Marker3D" parent="." unique_id=193816565]

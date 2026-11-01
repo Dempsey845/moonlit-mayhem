@@ -3,18 +3,12 @@ extends Node
 @export var moonlight: Moonlight
 @export var player: Player
 @export var moon_light_follow_speed: float = 9.0
-@export var ghost_container: Node3D
+@export var ghost_spawner: GhostSpawner
 
-var ghosts: Array[Ghost] = []
-var is_moonlight_following: bool = false
-
+var is_moonlight_following: bool = true
 
 func _ready() -> void:
 	set_process(false)
-
-	for child in ghost_container.get_children():
-		if child is Ghost:
-			ghosts.append(child)
 
 	moonlight.target_entered_light.connect(_on_target_entered_light)
 	moonlight.target_exited_light.connect(_on_target_exited_light)
@@ -46,7 +40,7 @@ func _on_target_exited_light() -> void:
 
 
 func set_ghosts_fleeing(fleeing: bool) -> void:
-	for ghost in ghosts:
+	for ghost in ghost_spawner.ghosts:
 		if is_instance_valid(ghost):
 			ghost.set_fleeing(fleeing)
 

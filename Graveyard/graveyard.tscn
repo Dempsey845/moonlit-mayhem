@@ -74,6 +74,7 @@ ground_y = -0.1
 spawn_points = [NodePath("../MoonlightSP"), NodePath("../MoonlightSP2"), NodePath("../MoonlightSP3")]
 
 [node name="Area3D" type="Area3D" parent="Moonlight" unique_id=866341441]
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Moonlight/Area3D" unique_id=1331068365]
 shape = SubResource("CylinderShape3D_gei8a")

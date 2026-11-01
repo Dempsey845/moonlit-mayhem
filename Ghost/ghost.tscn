@@ -7,6 +7,7 @@
 radius = 0.84765625
 
 [node name="Ghost" type="CharacterBody3D" unique_id=250297818]
+collision_layer = 2
 script = ExtResource("1_sdx2j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=643953794]

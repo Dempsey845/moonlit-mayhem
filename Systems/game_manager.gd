@@ -16,6 +16,8 @@ func _ready() -> void:
 
 	moonlight.non_target_entered_light.connect(_on_moonlight_non_target_entered)
 
+	ghost_spawner.all_ghosts_inactive.connect(_on_all_ghosts_inactive)
+
 
 func _process(delta: float) -> void:
 	var weight := 1.0 - exp(-moon_light_follow_speed * delta)
@@ -49,4 +51,12 @@ func _on_moonlight_non_target_entered(body: Node3D):
 		return
 
 	if body is Ghost:
-		body.die()
+		ghost_spawner.deactivate_ghost(body)
+
+func _on_all_ghosts_inactive():
+	var ghost_start_state: Ghost.State = Ghost.State.CHASE
+
+	if is_moonlight_following:
+		ghost_start_state = Ghost.State.FLEE
+
+	ghost_spawner.spawn_ghosts(5, ghost_start_state)

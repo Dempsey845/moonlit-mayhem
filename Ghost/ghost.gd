@@ -109,11 +109,11 @@ func die() -> void:
 	hide()
 
 
-func revive() -> void:
+func revive(start_state: State) -> void:
 	global_position = start_position
 	velocity = Vector3.ZERO
 	repath_timer = 0.0
-	state = State.CHASE
+	state = start_state
 
 	navigation_agent.target_position = start_position
 

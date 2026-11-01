@@ -28,6 +28,8 @@ var starting_position: Vector3
 var cylinder: CylinderShape3D
 var last_spawn_point: Node3D
 
+const MIN_ANGLE: float = 15.0
+
 
 func _ready() -> void:
 	starting_angle = spot_angle
@@ -54,7 +56,7 @@ func _run_light_cycle() -> void:
 		tween.tween_method(
 			_set_light_angle,
 			starting_angle,
-			0.0,
+			MIN_ANGLE,
 			maxf(shrink_duration, 0.01)
 		)
 

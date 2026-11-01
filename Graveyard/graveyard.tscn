@@ -66,7 +66,6 @@ spot_range = 6.0
 spot_angle = 30.0
 script = ExtResource("2_rvh4u")
 ground_y = -0.1
-shrink_duration = 16.0
 spawn_points = [NodePath("../MoonlightSP"), NodePath("../MoonlightSP2"), NodePath("../MoonlightSP3")]
 
 [node name="Area3D" type="Area3D" parent="Moonlight" unique_id=866341441]

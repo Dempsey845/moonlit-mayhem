@@ -3,55 +3,71 @@ extends Node
 
 signal all_ghosts_inactive
 
+@export var ghost_container: Node3D
+@export_range(1, 100) var start_ghosts: int = 2
+
 var ghosts: Array[Ghost] = []
 
-@export var ghost_container: Node3D
+var max_ghosts: int:
+	get:
+		var count: int = 0
+		for ghost in ghosts:
+			if is_instance_valid(ghost):
+				count += 1
+		return count
 
-var ghost_scene: PackedScene = preload("uid://wrg516q7xe4g")
+var active_ghosts: int:
+	get:
+		var count: int = 0
+		for ghost in ghosts:
+			if is_instance_valid(ghost) and ghost.state != Ghost.State.DEAD:
+				count += 1
+		return count
 
-var start_ghosts: int = 10
-
-var active_ghosts: int = 0
 
 func _ready() -> void:
+	if ghost_container == null:
+		push_error("Assign a ghost container to GhostSpawner.")
+		return
+
 	for child in ghost_container.get_children():
 		if child is Ghost:
 			ghosts.append(child)
 
-	await get_tree().create_timer(2.0).timeout
+			if child.state != Ghost.State.DEAD:
+				child.die()
 
-	spawn_ghosts(start_ghosts, Ghost.State.CHASE)
 
 func spawn_ghosts(amount: int, start_state: Ghost.State) -> int:
-	var ghosts_spawned: int = 0
+	if amount <= 0 or start_state == Ghost.State.DEAD:
+		return 0
+
+	var spawned: int = 0
 
 	for ghost in ghosts:
-		if ghosts_spawned >= amount:
-			return ghosts_spawned
+		if spawned >= amount:
+			break
 
-		if ghost.state == Ghost.State.DEAD:
-			ghost.revive(start_state)
-			active_ghosts += 1
-			ghosts_spawned += 1
-	
-	# if ghosts_spawned < amount:
-	# 	for i in range(amount - ghosts_spawned):
-	# 		var new_ghost: Ghost = ghost_scene.instantiate()
+		if not is_instance_valid(ghost):
+			continue
 
-	# 		ghost_container.add_child(new_ghost)
+		if ghost.state != Ghost.State.DEAD:
+			continue
 
-	# 		new_ghost.global_position = Vector3.ZERO
+		ghost.revive(start_state)
+		spawned += 1
 
-	# 		ghosts.append(new_ghost)
+	return spawned
 
-	# 		active_ghosts += 1
 
-	return ghosts_spawned
+func deactivate_ghost(ghost: Ghost) -> void:
+	if not is_instance_valid(ghost):
+		return
 
-func deactivate_ghost(ghost: Ghost):
+	if not ghosts.has(ghost) or ghost.state == Ghost.State.DEAD:
+		return
+
 	ghost.die()
-	active_ghosts -= 1
 
-	if active_ghosts <= 0:
-		active_ghosts = 0
+	if active_ghosts == 0:
 		all_ghosts_inactive.emit()

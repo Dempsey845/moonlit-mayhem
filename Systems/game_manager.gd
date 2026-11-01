@@ -1,66 +1,108 @@
 extends Node
 
+const SPAWN_DELAY: float = 2.0
+
 @export var moonlight: Moonlight
 @export var player: Player
-@export var moon_light_follow_speed: float = 9.0
 @export var ghost_spawner: GhostSpawner
+@export_range(0.0, 30.0) var moon_light_follow_speed: float = 9.0
 
-var is_moonlight_following: bool = true
+var is_moonlight_following: bool = false
 
-const SPAWN_DELAY: float = 2.0
+var _wave_size: int = 0
+var _spawn_pending: bool = false
+
 
 func _ready() -> void:
 	set_process(false)
 
+	if moonlight == null or player == null or ghost_spawner == null:
+		push_error("Assign the moonlight, player and ghost spawner.")
+		return
+
 	moonlight.target_entered_light.connect(_on_target_entered_light)
 	moonlight.target_exited_light.connect(_on_target_exited_light)
+	moonlight.non_target_entered_light.connect(
+		_on_moonlight_non_target_entered
+	)
+	ghost_spawner.all_ghosts_inactive.connect(_on_all_ghosts_inactive)
+
 	moonlight.current_target = player
 
-	moonlight.non_target_entered_light.connect(_on_moonlight_non_target_entered)
+	if not ghost_spawner.is_node_ready():
+		await ghost_spawner.ready
 
-	ghost_spawner.all_ghosts_inactive.connect(_on_all_ghosts_inactive)
+	_wave_size = clampi(
+		ghost_spawner.start_ghosts,
+		0,
+		ghost_spawner.max_ghosts
+	)
+
+	_spawn_wave_after_delay()
 
 
 func _process(delta: float) -> void:
-	var weight := 1.0 - exp(-moon_light_follow_speed * delta)
-	var position := moonlight.global_position
+	if not is_instance_valid(player) or not is_instance_valid(moonlight):
+		set_process(false)
+		return
 
-	position.x = lerpf(position.x, player.global_position.x, weight)
-	position.z = lerpf(position.z, player.global_position.z, weight)
+	var weight: float = 1.0 - exp(-moon_light_follow_speed * delta)
+	var light_position: Vector3 = moonlight.global_position
 
-	moonlight.global_position = position
+	light_position.x = lerpf(
+		light_position.x, player.global_position.x, weight
+	)
+	light_position.z = lerpf(
+		light_position.z, player.global_position.z, weight
+	)
+
+	moonlight.global_position = light_position
 
 
 func _on_target_entered_light() -> void:
-	is_moonlight_following = true
-	set_process(true)
-	set_ghosts_fleeing(true)
+	_set_moonlight_following(true)
 
 
 func _on_target_exited_light() -> void:
-	is_moonlight_following = false
-	set_process(false)
-	set_ghosts_fleeing(false)
+	_set_moonlight_following(false)
 
 
-func set_ghosts_fleeing(fleeing: bool) -> void:
+func _set_moonlight_following(following: bool) -> void:
+	is_moonlight_following = following
+	set_process(following)
+
 	for ghost in ghost_spawner.ghosts:
-		if is_instance_valid(ghost):
-			ghost.set_fleeing(fleeing)
+		if is_instance_valid(ghost) and ghost.state != Ghost.State.DEAD:
+			ghost.set_fleeing(following)
 
-func _on_moonlight_non_target_entered(body: Node3D):
-	if !is_moonlight_following:
-		return
 
-	if body is Ghost:
+func _on_moonlight_non_target_entered(body: Node3D) -> void:
+	if is_moonlight_following and body is Ghost:
 		ghost_spawner.deactivate_ghost(body)
 
-func _on_all_ghosts_inactive():
-	var ghost_start_state: Ghost.State = Ghost.State.CHASE
 
-	if is_moonlight_following:
-		ghost_start_state = Ghost.State.FLEE
+func _on_all_ghosts_inactive() -> void:
+	if _spawn_pending:
+		return
 
+	_wave_size = mini(_wave_size + 1, ghost_spawner.max_ghosts)
+	_spawn_wave_after_delay()
+
+
+func _spawn_wave_after_delay() -> void:
+	if _spawn_pending or _wave_size <= 0:
+		return
+
+	_spawn_pending = true
 	await get_tree().create_timer(SPAWN_DELAY).timeout
 
-	ghost_spawner.spawn_ghosts(5, ghost_start_state)
+	if not is_instance_valid(ghost_spawner):
+		_spawn_pending = false
+		return
+
+	var start_state: Ghost.State = Ghost.State.CHASE
+	if is_moonlight_following:
+		start_state = Ghost.State.FLEE
+
+	ghost_spawner.spawn_ghosts(_wave_size, start_state)
+	_spawn_pending = false

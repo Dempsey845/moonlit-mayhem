@@ -64,6 +64,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6437583, 0, -5.8968515)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2064649073]
 transform = Transform3D(1, 0, 0, 0, 0.6390457, 0.7691688, 0, -0.7691688, 0.6390457, 0.078620434, 9.246862, 11.417019)
+visible = false
 
 [node name="Moonlight" type="SpotLight3D" parent="." unique_id=884361163 node_paths=PackedStringArray("spawn_points")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2, 4, 2)

@@ -6,8 +6,9 @@ enum State { CHASE, FLEE, DEAD }
 @export var player: Node3D
 @export var chase_speed: float = 3.0
 @export var flee_speed: float = 4.0
-@export var flee_distance: float = 4.0
 @export var repath_interval: float = 0.25
+@export var scatter_interval_min: float = 0.7
+@export var scatter_interval_max: float = 1.5
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 
@@ -41,9 +42,25 @@ func _physics_process(delta: float) -> void:
 
 	repath_timer -= delta
 
-	if repath_timer <= 0.0:
+	var needs_target: bool = repath_timer <= 0.0
+
+	if state == State.FLEE:
+		var offset: Vector3 = navigation_agent.target_position - global_position
+		offset.y = 0.0
+
+		if offset.length_squared() < 0.25:
+			needs_target = true
+
+	if needs_target:
 		update_target()
-		repath_timer = repath_interval
+
+		if state == State.FLEE:
+			repath_timer = randf_range(
+				scatter_interval_min,
+				scatter_interval_max
+			)
+		else:
+			repath_timer = repath_interval
 
 	var direction: Vector3 = Vector3.ZERO
 
@@ -75,27 +92,34 @@ func update_target() -> void:
 			navigation_agent.target_position = player.global_position
 
 		State.FLEE:
-			var away: Vector3 = global_position - player.global_position
-			away.y = 0.0
+			var scatter_target: Vector3 = global_position
 
-			if away.length_squared() < 0.01:
-				away = Vector3.RIGHT
+			for attempt in range(8):
+				scatter_target = NavigationServer3D.map_get_random_point(
+					navigation_agent.get_navigation_map(),
+					navigation_agent.navigation_layers,
+					true
+				)
 
-			var flee_target: Vector3 = (
-				global_position + away.normalized() * flee_distance
-			)
+				var offset: Vector3 = scatter_target - global_position
+				offset.y = 0.0
 
-			navigation_agent.target_position = NavigationServer3D.map_get_closest_point(
-				navigation_agent.get_navigation_map(),
-				flee_target
-			)
+				if offset.length_squared() >= 4.0:
+					break
+
+			navigation_agent.target_position = scatter_target
 
 
 func set_fleeing(fleeing: bool) -> void:
 	if state == State.DEAD:
 		return
 
-	state = State.FLEE if fleeing else State.CHASE
+	var new_state: State = State.FLEE if fleeing else State.CHASE
+
+	if state == new_state:
+		return
+
+	state = new_state
 	repath_timer = 0.0
 
 

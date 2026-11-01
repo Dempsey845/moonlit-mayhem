@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bjhw3wh82e0hh"]
+
+[ext_resource type="PackedScene" uid="uid://b4m35rtubossf" path="res://Ghost/Ghost.glb" id="1_jhyl4"]
+
+[node name="GhostVisual" unique_id=1546254383 instance=ExtResource("1_jhyl4")]

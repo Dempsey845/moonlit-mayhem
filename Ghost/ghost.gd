@@ -11,6 +11,7 @@ enum State { CHASE, FLEE, DEAD }
 @export var scatter_interval_max: float = 1.5
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 var state: State = State.CHASE
 var repath_timer: float = 0.0
@@ -147,8 +148,14 @@ func revive(start_state: State) -> void:
 	set_deferred("collision_layer", original_collision_layer)
 	set_deferred("collision_mask", original_collision_mask)
 
+	animation_player.play("revive")
+
 	show()
 	set_physics_process(true)
+
+	await animation_player.animation_finished
+
+	animation_player.play("bob")
 	
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	if state == State.DEAD or not is_instance_valid(player):

@@ -12,8 +12,9 @@ enum State { CHASE, FLEE, DEAD }
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var ghost_visual: GhostVisual = $Ghost
 
-var state: State = State.CHASE
+var state: State = State.DEAD
 var repath_timer: float = 0.0
 
 var original_collision_layer: int
@@ -127,6 +128,9 @@ func die() -> void:
 	if state == State.DEAD:
 		return
 
+	if !is_node_ready():
+		await ready
+
 	state = State.DEAD
 	velocity = Vector3.ZERO
 	set_physics_process(false)
@@ -134,7 +138,7 @@ func die() -> void:
 	set_deferred("collision_layer", 0)
 	set_deferred("collision_mask", 0)
 
-	hide()
+	ghost_visual.play_death_effect()
 
 
 func revive(start_state: State) -> void:
@@ -143,6 +147,8 @@ func revive(start_state: State) -> void:
 	repath_timer = 0.0
 	state = start_state
 
+	ghost_visual.reset_death_effect()
+
 	navigation_agent.target_position = start_position
 
 	set_deferred("collision_layer", original_collision_layer)
@@ -150,7 +156,6 @@ func revive(start_state: State) -> void:
 
 	animation_player.play("revive")
 
-	show()
 	set_physics_process(true)
 
 	await animation_player.animation_finished

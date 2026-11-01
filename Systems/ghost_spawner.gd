@@ -17,7 +17,6 @@ func _ready() -> void:
 	for child in ghost_container.get_children():
 		if child is Ghost:
 			ghosts.append(child)
-			child.die()
 
 	await get_tree().create_timer(2.0).timeout
 

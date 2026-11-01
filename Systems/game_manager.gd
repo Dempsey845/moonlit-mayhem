@@ -7,6 +7,8 @@ extends Node
 
 var is_moonlight_following: bool = true
 
+const SPAWN_DELAY: float = 2.0
+
 func _ready() -> void:
 	set_process(false)
 
@@ -58,5 +60,7 @@ func _on_all_ghosts_inactive():
 
 	if is_moonlight_following:
 		ghost_start_state = Ghost.State.FLEE
+
+	await get_tree().create_timer(SPAWN_DELAY).timeout
 
 	ghost_spawner.spawn_ghosts(5, ghost_start_state)

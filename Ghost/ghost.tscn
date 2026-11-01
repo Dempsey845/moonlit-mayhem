@@ -1,20 +1,18 @@
 [gd_scene format=3 uid="uid://wrg516q7xe4g"]
 
 [ext_resource type="Script" uid="uid://bqrjf1qf6agjn" path="res://Ghost/ghost.gd" id="1_sdx2j"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_xrivr"]
+[ext_resource type="PackedScene" uid="uid://b4m35rtubossf" path="res://Ghost/Ghost.glb" id="2_uexgx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrivr"]
+radius = 0.84765625
 
 [node name="Ghost" type="CharacterBody3D" unique_id=250297818]
 script = ExtResource("1_sdx2j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=357639595]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_xrivr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=643953794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_xrivr")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=61609250]
+
+[node name="Ghost" parent="." unique_id=1546254383 instance=ExtResource("2_uexgx")]

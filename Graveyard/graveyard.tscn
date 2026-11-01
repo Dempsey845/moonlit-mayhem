@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bcxdautgfy4if" path="res://Systems/ghost_spawner.gd" id="2_1lelr"]
 [ext_resource type="Script" uid="uid://bc6q6c74okrly" path="res://Moonlight/moonlight.gd" id="2_rvh4u"]
 [ext_resource type="PackedScene" uid="uid://wrg516q7xe4g" path="res://Ghost/ghost.tscn" id="3_oqqt7"]
+[ext_resource type="Script" uid="uid://dfyscog17m1e1" path="res://Moonlight/moonlight_obstacle.gd" id="6_isfp6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hff6p"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -141,3 +142,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.403518, 0, 6.9974766)
 
 [node name="MoonlightSP3" type="Marker3D" parent="." unique_id=1429522450]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9903717, 0, -3.7799966)
+
+[node name="MoonlightObstacle" type="NavigationObstacle3D" parent="." unique_id=2099228405 node_paths=PackedStringArray("moonlight")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+vertices = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, -2.5, 2.5, 0, 2.5, -2.5, 0, 2.5)
+avoidance_layers = 2
+script = ExtResource("6_isfp6")
+moonlight = NodePath("../Moonlight")

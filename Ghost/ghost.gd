@@ -27,12 +27,16 @@ func _ready() -> void:
 
 	start_position = global_position
 
+	navigation_agent.velocity_computed.connect(_on_velocity_computed)
+
 
 func _physics_process(delta: float) -> void:
 	if state == State.DEAD:
 		return
 
 	if not is_instance_valid(player):
+		velocity = Vector3.ZERO
+		navigation_agent.velocity = Vector3.ZERO
 		return
 
 	if NavigationServer3D.map_get_iteration_id(
@@ -71,19 +75,14 @@ func _physics_process(delta: float) -> void:
 		direction = direction.normalized()
 
 	var speed: float = chase_speed if state == State.CHASE else flee_speed
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	var desired_velocity: Vector3 = direction * speed
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
 		velocity.y = 0.0
 
-	if direction.length_squared() > 0.001:
-		var target_angle: float = atan2(-direction.x, -direction.z)
-		rotation.y = lerp_angle(rotation.y, target_angle, 1.0 - exp(-10.0 * delta))
-
-	move_and_slide()
+	navigation_agent.velocity = desired_velocity
 
 
 func update_target() -> void:
@@ -150,3 +149,20 @@ func revive(start_state: State) -> void:
 
 	show()
 	set_physics_process(true)
+	
+func _on_velocity_computed(safe_velocity: Vector3) -> void:
+	if state == State.DEAD or not is_instance_valid(player):
+		return
+
+	velocity.x = safe_velocity.x
+	velocity.z = safe_velocity.z
+
+	if Vector2(velocity.x, velocity.z).length_squared() > 0.001:
+		var target_angle: float = atan2(-velocity.x, -velocity.z)
+		rotation.y = lerp_angle(
+			rotation.y,
+			target_angle,
+			1.0 - exp(-10.0 * get_physics_process_delta_time())
+		)
+
+	move_and_slide()

@@ -15,6 +15,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_xrivr")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=61609250]
+avoidance_enabled = true
+max_speed = 4.0
+avoidance_layers = 0
+avoidance_mask = 2
 
 [node name="Ghost" parent="." unique_id=1546254383 instance=ExtResource("2_uexgx")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)

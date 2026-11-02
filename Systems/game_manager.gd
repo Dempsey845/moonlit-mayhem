@@ -5,6 +5,7 @@ const SPAWN_DELAY: float = 2.0
 @export var moonlight: Moonlight
 @export var player: Player
 @export var ghost_spawner: GhostSpawner
+@export var ghost_counter: GhostCounter
 @export_range(0.0, 30.0) var moon_light_follow_speed: float = 12.0
 
 var is_moonlight_following: bool = false
@@ -79,6 +80,7 @@ func _set_moonlight_following(following: bool) -> void:
 func _on_moonlight_non_target_entered(body: Node3D) -> void:
 	if is_moonlight_following and body is Ghost:
 		ghost_spawner.deactivate_ghost(body)
+		ghost_counter.add_ghost()
 
 
 func _on_all_ghosts_inactive() -> void:

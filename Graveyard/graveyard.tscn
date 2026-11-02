@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://6e2tencrn2q0" path="res://Systems/upgrade_manager.gd" id="2_kj6ab"]
 [ext_resource type="Script" uid="uid://bc6q6c74okrly" path="res://Moonlight/moonlight.gd" id="2_rvh4u"]
 [ext_resource type="Shader" uid="uid://b1s6g5nshc3v4" path="res://Graveyard/moonlit_night_sky.gdshader" id="3_83jfa"]
+[ext_resource type="Script" uid="uid://bk7ckwee7sgcd" path="res://GhostCounter/ghost_counter.gd" id="3_lsij0"]
 [ext_resource type="PackedScene" uid="uid://wrg516q7xe4g" path="res://Ghost/ghost.tscn" id="3_oqqt7"]
 [ext_resource type="Script" uid="uid://dfyscog17m1e1" path="res://Moonlight/moonlight_obstacle.gd" id="6_isfp6"]
 [ext_resource type="PackedScene" uid="uid://cwwa4fkdp3rpt" path="res://Graveyard/Props/StonePillar/stone_pillar.tscn" id="7_jaj5c"]
@@ -14,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://h8j0ix66kmqc" path="res://Graveyard/Props/StoneWall/stone_wall.tscn" id="9_n2rhk"]
 [ext_resource type="PackedScene" uid="uid://bjdwkm8e8x40k" path="res://Graveyard/Props/Tree/tree.tscn" id="10_kj6ab"]
 [ext_resource type="PackedScene" uid="uid://bvm4id7brgihy" path="res://Shrine/shrine.tscn" id="13_n2rhk"]
+[ext_resource type="PackedScene" uid="uid://c05fu0m4mmo28" path="res://GhostCounter/ghost_counter_ui.tscn" id="16_wwqok"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2rhk"]
 shader = ExtResource("3_83jfa")
@@ -53,16 +55,20 @@ albedo_color = Color(0.18193737, 0.2799425, 0.14161795, 1)
 
 [node name="Graveyard" type="Node3D" unique_id=378118441]
 
-[node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_spawner")]
+[node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_spawner", "ghost_counter")]
 script = ExtResource("1_2m5em")
 moonlight = NodePath("../Moonlight")
 player = NodePath("../Player")
 ghost_spawner = NodePath("../GhostSpawner")
+ghost_counter = NodePath("../GhostCounter")
 
 [node name="UpgradeManager" type="Node" parent="." unique_id=1531840155 node_paths=PackedStringArray("player", "moonlight")]
 script = ExtResource("2_kj6ab")
 player = NodePath("../Player")
 moonlight = NodePath("../Moonlight")
+
+[node name="GhostCounter" type="Node" parent="." unique_id=894495734]
+script = ExtResource("3_lsij0")
 
 [node name="GhostSpawner" type="Node" parent="." unique_id=84861892 node_paths=PackedStringArray("ghost_container")]
 script = ExtResource("2_1lelr")
@@ -860,3 +866,8 @@ upgrade_manager = NodePath("../UpgradeManager")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 3)
 shrine_type = 3
 upgrade_manager = NodePath("../UpgradeManager")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1491475656]
+
+[node name="GhostCounterUI" parent="CanvasLayer" unique_id=492207688 node_paths=PackedStringArray("ghost_counter") instance=ExtResource("16_wwqok")]
+ghost_counter = NodePath("../../GhostCounter")

@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://bc6q6c74okrly" path="res://Moonlight/moonlight.gd" id="2_rvh4u"]
 [ext_resource type="PackedScene" uid="uid://wrg516q7xe4g" path="res://Ghost/ghost.tscn" id="3_oqqt7"]
 [ext_resource type="Script" uid="uid://dfyscog17m1e1" path="res://Moonlight/moonlight_obstacle.gd" id="6_isfp6"]
-[ext_resource type="PackedScene" uid="uid://bg81s0t12iwbv" path="res://Graveyard/Props/StonePillar.glb" id="7_8vwor"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hff6p"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,7 +20,7 @@ sky = SubResource("Sky_puhq3")
 glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_xrivr"]
-vertices = PackedVector3Array(-9.5, 0.29337648, -9.5, -9.5, 0.29337648, 9.5, 9.5, 0.29337648, 9.5, 9.5, 0.29337648, -9.5)
+vertices = PackedVector3Array(-19.5, 0.29337648, -19.5, -19.5, 0.29337648, 19.5, 19.5, 0.29337648, 19.5, 19.5, 0.29337648, -19.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrivr"]
@@ -57,7 +56,7 @@ use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=56756119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10662353, 0)
-size = Vector3(20, 0.2, 20)
+size = Vector3(40, 0.2, 40)
 material = SubResource("StandardMaterial3D_xrivr")
 
 [node name="Player" parent="." unique_id=406549635 instance=ExtResource("1_puhq3")]
@@ -151,6 +150,3 @@ vertices = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, -2.5, 2.5, 0, 2.5, -2.5, 0,
 avoidance_layers = 2
 script = ExtResource("6_isfp6")
 moonlight = NodePath("../Moonlight")
-
-[node name="StonePillar2" parent="." unique_id=1186120277 instance=ExtResource("7_8vwor")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)

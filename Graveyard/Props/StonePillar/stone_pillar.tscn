@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cwwa4fkdp3rpt"]
+
+[ext_resource type="PackedScene" uid="uid://bg81s0t12iwbv" path="res://Graveyard/Props/StonePillar/StonePillar.glb" id="1_frug6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(1.4, 2.2, 0.6)
+
+[node name="StonePillar" type="StaticBody3D" unique_id=621317402]
+
+[node name="StonePillar2" parent="." unique_id=702839309 instance=ExtResource("1_frug6")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=662126028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 1.0545899, 0)
+shape = SubResource("BoxShape3D_xrivr")

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://h8j0ix66kmqc"]
+
+[ext_resource type="PackedScene" uid="uid://dr2x3is0jelpn" path="res://Graveyard/Props/StoneWall/StoneWall.glb" id="1_b5p2s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(1.8000001, 0.8, 0.8)
+
+[node name="StoneWall" type="StaticBody3D" unique_id=1582128252]
+
+[node name="StoneWall2" parent="." unique_id=632024422 instance=ExtResource("1_b5p2s")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=192656295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.940697e-08, 0.40000007, -2.9802322e-08)
+shape = SubResource("BoxShape3D_xrivr")

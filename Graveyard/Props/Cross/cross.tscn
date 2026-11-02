@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://q70xb5it24fc"]
+
+[ext_resource type="PackedScene" uid="uid://dr15m0vxbq145" path="res://Graveyard/Props/Cross/Cross.glb" id="1_6qk33"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(1.8000001, 2.5, 1)
+
+[node name="Cross" type="StaticBody3D" unique_id=1306596553]
+
+[node name="Cross" parent="." unique_id=225854249 instance=ExtResource("1_6qk33")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1004020927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.940697e-08, 1.1500001, 0)
+shape = SubResource("BoxShape3D_xrivr")

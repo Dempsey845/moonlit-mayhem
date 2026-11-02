@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bg81s0t12iwbv"
-path="res://.godot/imported/StonePillar.glb-e251a8bda59c92b3c8c4903f6048456e.scn"
+path="res://.godot/imported/StonePillar.glb-fd090b33be4bde3173e35f492616dbef.scn"
 
 [deps]
 
-source_file="res://Graveyard/Props/StonePillar.glb"
-dest_files=["res://.godot/imported/StonePillar.glb-e251a8bda59c92b3c8c4903f6048456e.scn"]
+source_file="res://Graveyard/Props/StonePillar/StonePillar.glb"
+dest_files=["res://.godot/imported/StonePillar.glb-fd090b33be4bde3173e35f492616dbef.scn"]
 
 [params]
 

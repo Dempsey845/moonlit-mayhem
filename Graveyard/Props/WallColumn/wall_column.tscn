@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://df3q54ep8gaqq"]
+
+[ext_resource type="PackedScene" uid="uid://vn6e18mm2d3k" path="res://Graveyard/Props/WallColumn/WallColumn.glb" id="1_rs1pw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(1.2, 2.3, 1.2)
+
+[node name="WallColumn" type="StaticBody3D" unique_id=1032249686]
+
+[node name="WallColumn2" parent="." unique_id=999162546 instance=ExtResource("1_rs1pw")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=556735563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+shape = SubResource("BoxShape3D_xrivr")

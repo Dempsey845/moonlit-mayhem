@@ -6,6 +6,11 @@
 [ext_resource type="Script" uid="uid://bc6q6c74okrly" path="res://Moonlight/moonlight.gd" id="2_rvh4u"]
 [ext_resource type="PackedScene" uid="uid://wrg516q7xe4g" path="res://Ghost/ghost.tscn" id="3_oqqt7"]
 [ext_resource type="Script" uid="uid://dfyscog17m1e1" path="res://Moonlight/moonlight_obstacle.gd" id="6_isfp6"]
+[ext_resource type="PackedScene" uid="uid://cwwa4fkdp3rpt" path="res://Graveyard/Props/StonePillar/stone_pillar.tscn" id="7_jaj5c"]
+[ext_resource type="PackedScene" uid="uid://q70xb5it24fc" path="res://Graveyard/Props/Cross/cross.tscn" id="8_83jfa"]
+[ext_resource type="PackedScene" uid="uid://h8j0ix66kmqc" path="res://Graveyard/Props/StoneWall/stone_wall.tscn" id="9_n2rhk"]
+[ext_resource type="PackedScene" uid="uid://bjdwkm8e8x40k" path="res://Graveyard/Props/Tree/tree.tscn" id="10_kj6ab"]
+[ext_resource type="PackedScene" uid="uid://df3q54ep8gaqq" path="res://Graveyard/Props/WallColumn/wall_column.tscn" id="11_3pcqc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hff6p"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -150,3 +155,18 @@ vertices = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, -2.5, 2.5, 0, 2.5, -2.5, 0,
 avoidance_layers = 2
 script = ExtResource("6_isfp6")
 moonlight = NodePath("../Moonlight")
+
+[node name="StonePillar" parent="." unique_id=621317402 instance=ExtResource("7_jaj5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.671362, 0.025213528, 9.62945)
+
+[node name="Cross" parent="." unique_id=1306596553 instance=ExtResource("8_83jfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.293419, 0.108254075, 9.914877)
+
+[node name="StoneWall" parent="." unique_id=1582128252 instance=ExtResource("9_n2rhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9689007, -0.005218804, 10.3921175)
+
+[node name="Tree" parent="." unique_id=2095401677 instance=ExtResource("10_kj6ab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9592347, 0.0046547055, 10.617735)
+
+[node name="WallColumn" parent="." unique_id=1032249686 instance=ExtResource("11_3pcqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.164575, 0.097151004, 10.542122)

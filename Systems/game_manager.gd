@@ -5,7 +5,7 @@ const SPAWN_DELAY: float = 2.0
 @export var moonlight: Moonlight
 @export var player: Player
 @export var ghost_spawner: GhostSpawner
-@export_range(0.0, 30.0) var moon_light_follow_speed: float = 9.0
+@export_range(0.0, 30.0) var moon_light_follow_speed: float = 12.0
 
 var is_moonlight_following: bool = false
 

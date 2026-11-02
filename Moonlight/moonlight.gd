@@ -6,6 +6,8 @@ signal target_exited_light
 
 signal non_target_entered_light(body: Node3D)
 
+signal angle_changed(new_angle: float)
+
 @export var ground_y: float = 0.0
 @export var detection_height: float = 3.0
 
@@ -76,6 +78,7 @@ func _run_light_cycle() -> void:
 func _set_light_angle(angle: float) -> void:
 	spot_angle = maxf(angle, 0.01)
 	refresh_detection()
+	angle_changed.emit(angle)
 
 
 func refresh_detection() -> void:

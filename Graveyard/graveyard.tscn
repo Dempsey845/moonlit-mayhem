@@ -750,12 +750,12 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8.1, 4, 2)
 light_energy = 4.644
 spot_range = 8.0
-spot_attenuation = 1.2
+spot_attenuation = 1.4
 spot_angle = 30.0
-spot_angle_attenuation = 1.6245056
+spot_angle_attenuation = 3.4822025
 script = ExtResource("2_rvh4u")
 ground_y = -0.1
-spawn_points = [NodePath("../MoonlightSP"), NodePath("../MoonlightSP2"), NodePath("../MoonlightSP3")]
+spawn_points = [NodePath("../MoonlightSP"), NodePath("../MoonlightSP2"), NodePath("../MoonlightSP3"), NodePath("../MoonlightSP4"), NodePath("../MoonlightSP5"), NodePath("../MoonlightSP6")]
 
 [node name="Area3D" type="Area3D" parent="Moonlight" unique_id=866341441]
 collision_mask = 3
@@ -818,13 +818,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6340313, -4.7683716e-06, -3
 player = NodePath("../../Player")
 
 [node name="MoonlightSP" type="Marker3D" parent="." unique_id=193816565]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025465965, 0, -0.02279234)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.974534, 0, -0.02279234)
 
 [node name="MoonlightSP2" type="Marker3D" parent="." unique_id=1683753944]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.403518, 0, 6.9974766)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.403519, 0, 1.9974766)
 
 [node name="MoonlightSP3" type="Marker3D" parent="." unique_id=1429522450]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9903717, 0, -3.7799966)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9903717, 0, -6.779997)
+
+[node name="MoonlightSP4" type="Marker3D" parent="." unique_id=648419605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0096283, 0, -13.779997)
+
+[node name="MoonlightSP5" type="Marker3D" parent="." unique_id=477621295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.009628, 0, 13.220003)
+
+[node name="MoonlightSP6" type="Marker3D" parent="." unique_id=1496483502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.990372, 0, 13.220003)
 
 [node name="MoonlightObstacle" type="NavigationObstacle3D" parent="." unique_id=2099228405 node_paths=PackedStringArray("moonlight")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)

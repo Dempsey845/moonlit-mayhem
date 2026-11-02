@@ -40,7 +40,8 @@ func show_correct_visual():
 
 func interact():
 	if upgrade_manager.try_apply_upgrade(shrine_type as UpgradeManager.UpgradeType):
-		print("Upgrade!")
+		if upgrade_manager.is_upgrade_maxed(shrine_type as UpgradeManager.UpgradeType):
+			shrine_visual.hide_outline()
 	else:
 		print("Upgrade failed!")
 
@@ -50,8 +51,13 @@ func _on_interact_area_body_entered(body: Node3D):
 
 	player_in_interact_area = true
 
+	if !upgrade_manager.is_upgrade_maxed(shrine_type as UpgradeManager.UpgradeType):
+		shrine_visual.show_outline()
+
 func _on_interact_area_body_exited(body: Node3D):
 	if body is not Player:
 		return
 
 	player_in_interact_area = false
+
+	shrine_visual.hide_outline()

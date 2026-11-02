@@ -77,3 +77,8 @@ func try_apply_upgrade(type: UpgradeType) -> bool:
     upgrades[type] += 1
 
     return true
+
+func is_upgrade_maxed(type: UpgradeType) -> bool:
+    var info: Dictionary = upgrade_info[type]
+
+    return upgrades[type] >= info["max_upgrades"]

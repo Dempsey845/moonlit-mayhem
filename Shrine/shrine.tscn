@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bvm4id7brgihy"]
+
+[ext_resource type="PackedScene" uid="uid://s31ryerrdth" path="res://Shrine/shrine_visual.tscn" id="1_snjfn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(3.8293946, 2.4, 3.9294922)
+
+[node name="Shrine" type="StaticBody3D" unique_id=601831799]
+
+[node name="ShrineVisual" parent="." unique_id=732721882 instance=ExtResource("1_snjfn")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1599851973]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=554018961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014697194, 1.2, -0.011816621)
+shape = SubResource("BoxShape3D_xrivr")

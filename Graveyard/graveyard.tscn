@@ -9,9 +9,10 @@
 [ext_resource type="Script" uid="uid://dfyscog17m1e1" path="res://Moonlight/moonlight_obstacle.gd" id="6_isfp6"]
 [ext_resource type="PackedScene" uid="uid://cwwa4fkdp3rpt" path="res://Graveyard/Props/StonePillar/stone_pillar.tscn" id="7_jaj5c"]
 [ext_resource type="PackedScene" uid="uid://q70xb5it24fc" path="res://Graveyard/Props/Cross/cross.tscn" id="8_83jfa"]
-[ext_resource type="PackedScene" uid="uid://vn6e18mm2d3k" path="res://Graveyard/Props/WallColumn/WallColumn.glb" id="9_83jfa"]
+[ext_resource type="PackedScene" uid="uid://df3q54ep8gaqq" path="res://Graveyard/Props/WallColumn/wall_column.tscn" id="8_n2rhk"]
 [ext_resource type="PackedScene" uid="uid://h8j0ix66kmqc" path="res://Graveyard/Props/StoneWall/stone_wall.tscn" id="9_n2rhk"]
 [ext_resource type="PackedScene" uid="uid://bjdwkm8e8x40k" path="res://Graveyard/Props/Tree/tree.tscn" id="10_kj6ab"]
+[ext_resource type="PackedScene" uid="uid://bvm4id7brgihy" path="res://Shrine/shrine.tscn" id="13_n2rhk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2rhk"]
 shader = ExtResource("3_83jfa")
@@ -726,10 +727,10 @@ transform = Transform3D(1.1539984, 0, -1.1539983, 0, 1.6320002, 0, 1.1539983, 0,
 [node name="Tree6" parent="NavigationRegion3D/Props/Trees" unique_id=532332565 instance=ExtResource("10_kj6ab")]
 transform = Transform3D(-0.9231985, 0, -0.9231988, 0, 1.3056003, 0, 0.9231988, 0, -0.9231985, 5.540766, 0.0046547055, 12.617736)
 
-[node name="WallColumn2" parent="NavigationRegion3D/Props" unique_id=168633541 instance=ExtResource("9_83jfa")]
+[node name="WallColumn5" parent="NavigationRegion3D/Props" unique_id=1032249686 instance=ExtResource("8_n2rhk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.345152, 0, -3.9788134)
 
-[node name="WallColumn3" parent="NavigationRegion3D/Props" unique_id=1590098062 instance=ExtResource("9_83jfa")]
+[node name="WallColumn4" parent="NavigationRegion3D/Props" unique_id=1465380814 instance=ExtResource("8_n2rhk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.345152, 0, 0.02118659)
 
 [node name="Player" parent="." unique_id=406549635 instance=ExtResource("1_puhq3")]
@@ -824,3 +825,6 @@ vertices = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, -2.5, 2.5, 0, 2.5, -2.5, 0,
 avoidance_layers = 2
 script = ExtResource("6_isfp6")
 moonlight = NodePath("../Moonlight")
+
+[node name="Shrine" parent="." unique_id=601831799 instance=ExtResource("13_n2rhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 1)

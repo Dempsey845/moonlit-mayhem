@@ -8,6 +8,9 @@ signal non_target_entered_light(body: Node3D)
 
 signal angle_changed(new_angle: float)
 
+signal deplenished
+signal moved
+
 @export var ground_y: float = 0.0
 @export var detection_height: float = 3.0
 
@@ -64,6 +67,8 @@ func _run_light_cycle() -> void:
 
 		await tween.finished
 
+		deplenished.emit()
+
 		hide()
 		_set_target_in_light(false)
 
@@ -73,6 +78,8 @@ func _run_light_cycle() -> void:
 		await get_tree().create_timer(
 			maxf(respawn_delay, 0.01)
 		).timeout
+
+		moved.emit()
 
 
 func _set_light_angle(angle: float) -> void:

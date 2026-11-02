@@ -744,7 +744,6 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2, 
 light_energy = 4.644
 spot_range = 6.0
 spot_attenuation = 1.2
-spot_angle = 30.0
 spot_angle_attenuation = 1.6245056
 script = ExtResource("2_rvh4u")
 ground_y = -0.1

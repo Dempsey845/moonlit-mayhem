@@ -7,7 +7,17 @@ var previous_angle: float
 func _ready() -> void:
 	previous_angle = moonlight.spot_angle
 
+	_on_moonlight_angle_changed(moonlight.starting_angle)
+
 	moonlight.angle_changed.connect(_on_moonlight_angle_changed)
+
+	moonlight.deplenished.connect(func():
+		avoidance_enabled = false
+	)
+
+	moonlight.moved.connect(func():
+		avoidance_enabled = true
+	)
 
 func _process(_delta: float) -> void:
 	global_position = Vector3(moonlight.global_position.x, 0, moonlight.global_position.z)

@@ -12,11 +12,17 @@ extends CharacterBody3D
 @export var minimum_pitch_degrees: float = -65.0
 @export var maximum_pitch_degrees: float = 35.0
 
+@export_group("Animation")
+@export var animation_blend_speed: float = 8.0
+
 @onready var visual: Node3D = $Pumpkin
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var spring_arm: SpringArm3D = $CameraPivot/SpringArm3D
 @onready var camera: Camera3D = $CameraPivot/SpringArm3D/Camera3D
 
+@onready var animation_tree: AnimationTree = $AnimationTree
+
+var move_blend: float = 0.0
 
 func _ready() -> void:
 	spring_arm.add_excluded_object(get_rid())
@@ -45,9 +51,11 @@ func _physics_process(delta: float) -> void:
 		"move_left", "move_right",
 		"move_forward", "move_back"
 	)
+
 	var direction: Vector3 = camera_pivot.global_basis * Vector3(move_input.x, 0.0, move_input.y)
 	direction.y = 0.0
 	direction = direction.normalized() * move_input.length()
+
 	var target_velocity: Vector3 = direction * speed
 	var change_rate: float = acceleration if not move_input.is_zero_approx() else deceleration
 
@@ -67,3 +75,14 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 
 	move_and_slide()
+
+	var horizontal_speed: float = Vector2(velocity.x, velocity.z).length()
+	var target_blend: float = clampf(horizontal_speed / maxf(speed, 0.001), 0.0, 1.0)
+
+	move_blend = lerpf(
+		move_blend,
+		target_blend,
+		1.0 - exp(-animation_blend_speed * delta)
+	)
+
+	animation_tree.set("parameters/MoveBlend/blend_amount", move_blend)

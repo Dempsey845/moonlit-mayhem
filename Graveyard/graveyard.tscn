@@ -827,4 +827,16 @@ script = ExtResource("6_isfp6")
 moonlight = NodePath("../Moonlight")
 
 [node name="Shrine" parent="." unique_id=601831799 instance=ExtResource("13_n2rhk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 1)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 0, 11)
+
+[node name="Shrine2" parent="." unique_id=632275607 instance=ExtResource("13_n2rhk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 0, 11)
+shrine_type = 1
+
+[node name="Shrine3" parent="." unique_id=1426668122 instance=ExtResource("13_n2rhk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 0, 3)
+shrine_type = 2
+
+[node name="Shrine4" parent="." unique_id=692779076 instance=ExtResource("13_n2rhk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 3)
+shrine_type = 3

@@ -1,13 +1,28 @@
 [gd_scene format=3 uid="uid://s31ryerrdth"]
 
 [ext_resource type="PackedScene" uid="uid://on5cq63tjwfo" path="res://Shrine/Shrine.glb" id="1_ohh3r"]
+[ext_resource type="Script" uid="uid://ypgkp04jjdlp" path="res://Shrine/shrine_visual.gd" id="2_41fli"]
+[ext_resource type="Shader" uid="uid://6inaujlvcya8" path="res://Shaders/outline.gdshader" id="2_ml85h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snjfn"]
+render_priority = 0
+shader = ExtResource("2_ml85h")
+shader_parameter/outline_color = Color(0.6611114, 1, 0.63692135, 1)
+shader_parameter/outline_thickness = 0.0590000028025
 
 [node name="ShrineVisual" unique_id=732721882 instance=ExtResource("1_ohh3r")]
+script = ExtResource("2_41fli")
+
+[node name="Shrine" parent="." index="0" unique_id=742055505]
+material_overlay = SubResource("ShaderMaterial_snjfn")
 
 [node name="Heart" parent="." index="3" unique_id=771954357]
 visible = false
 
 [node name="Shoe" parent="." index="4" unique_id=754066047]
+visible = false
+
+[node name="MoonAngle" parent="." index="5" unique_id=1552851900]
 visible = false
 
 [node name="MoonDuration" parent="." index="6" unique_id=992944197]

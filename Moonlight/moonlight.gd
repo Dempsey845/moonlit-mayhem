@@ -79,6 +79,13 @@ func _run_light_cycle() -> void:
 			maxf(respawn_delay, 0.01)
 		).timeout
 
+		show()
+
+		var bodies = detection_area.get_overlapping_bodies()
+
+		for body in bodies:
+			_on_body_entered(body)
+
 		moved.emit()
 
 

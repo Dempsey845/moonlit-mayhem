@@ -6,6 +6,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
 size = Vector3(3.8293946, 2.4, 3.9294922)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_xrivr"]
+radius = 1.1
+
 [node name="Shrine" type="StaticBody3D" unique_id=601831799]
 script = ExtResource("1_asdbm")
 
@@ -14,3 +17,11 @@ script = ExtResource("1_asdbm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=554018961]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014697194, 1.2, -0.011816621)
 shape = SubResource("BoxShape3D_xrivr")
+
+[node name="InteractArea" type="Area3D" parent="." unique_id=1819587702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.8, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea" unique_id=838684352]
+shape = SubResource("SphereShape3D_xrivr")

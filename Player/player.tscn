@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5sh5wsrxb575"]
 
 [ext_resource type="Script" uid="uid://b3v3q1aqd3mqf" path="res://Player/player.gd" id="1_l8h54"]
-[ext_resource type="PackedScene" uid="uid://d4m2ty06vxwyr" path="res://Player/Pumpkin.glb" id="2_4ntmi"]
+[ext_resource type="PackedScene" uid="uid://cdj56gwk2ea37" path="res://Player/pumpkin_visual.tscn" id="2_4ntmi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrivr"]
 height = 1.0
@@ -15,7 +15,7 @@ animation = &"move"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gwnis"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xrivr"]
-graph_offset = Vector2(-382, 45)
+graph_offset = Vector2(-407.98346, 0.4875946)
 nodes/MoveBlend/node = SubResource("AnimationNodeBlend2_gwnis")
 nodes/MoveBlend/position = Vector2(60, 120)
 nodes/IdleAnimation/node = SubResource("AnimationNodeAnimation_4ntmi")
@@ -29,7 +29,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("PumpkinVisual:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,7 +41,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
+tracks/1/path = NodePath("PumpkinVisual:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -58,7 +58,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("PumpkinVisual:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +70,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
+tracks/1/path = NodePath("PumpkinVisual:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -87,7 +87,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("PumpkinVisual:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -99,7 +99,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
+tracks/1/path = NodePath("PumpkinVisual:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -117,6 +117,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D" unique_id=406549635]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 collision_layer = 5
 script = ExtResource("1_l8h54")
 
@@ -124,8 +125,8 @@ script = ExtResource("1_l8h54")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_xrivr")
 
-[node name="Pumpkin" parent="." unique_id=272640931 instance=ExtResource("2_4ntmi")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+[node name="PumpkinVisual" parent="." unique_id=711109724 instance=ExtResource("2_4ntmi")]
+transform = Transform3D(-0.7, 0, -1.0569706e-07, 0, 0.7, 0, 1.0569706e-07, 0, -0.7, 0, 0, 0)
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=290584957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
@@ -141,11 +142,9 @@ fov = 70.0
 near = 0.001
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1658030659]
-root_node = NodePath("../Pumpkin")
 tree_root = SubResource("AnimationNodeBlendTree_xrivr")
 anim_player = NodePath("../AnimationPlayer")
 parameters/MoveBlend/blend_amount = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1742626298]
-root_node = NodePath("../Pumpkin")
 libraries/ = SubResource("AnimationLibrary_gwnis")

@@ -15,7 +15,7 @@ extends CharacterBody3D
 @export_group("Animation")
 @export var animation_blend_speed: float = 8.0
 
-@onready var visual: Node3D = $Pumpkin
+@onready var visual: Node3D = $PumpkinVisual
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var spring_arm: SpringArm3D = $CameraPivot/SpringArm3D
 @onready var camera: Camera3D = $CameraPivot/SpringArm3D/Camera3D
@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	velocity.z = move_toward(velocity.z, target_velocity.z, change_rate * delta)
 
 	if not direction.is_zero_approx():
-		var target_angle: float = atan2(-direction.x, -direction.z)
+		var target_angle: float = atan2(direction.x, direction.z)
 		target_angle += deg_to_rad(model_forward_offset_degrees)
 		visual.global_rotation.y = lerp_angle(
 			visual.global_rotation.y, target_angle, 1.0 - exp(-turn_speed * delta)

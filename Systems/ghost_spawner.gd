@@ -60,14 +60,16 @@ func spawn_ghosts(amount: int, start_state: Ghost.State) -> int:
 	return spawned
 
 
-func deactivate_ghost(ghost: Ghost) -> void:
+func deactivate_ghost(ghost: Ghost) -> bool:
 	if not is_instance_valid(ghost):
-		return
+		return false
 
 	if not ghosts.has(ghost) or ghost.state == Ghost.State.DEAD:
-		return
+		return false
 
 	ghost.die()
 
 	if active_ghosts == 0:
 		all_ghosts_inactive.emit()
+
+	return true

@@ -3,12 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://on5cq63tjwfo" path="res://Shrine/Shrine.glb" id="1_ohh3r"]
 [ext_resource type="Script" uid="uid://ypgkp04jjdlp" path="res://Shrine/shrine_visual.gd" id="2_41fli"]
 [ext_resource type="Shader" uid="uid://6inaujlvcya8" path="res://Shaders/outline.gdshader" id="2_ml85h"]
+[ext_resource type="Texture2D" uid="uid://bur3murvmqsnc" path="res://Ghost/GhostIcon.png" id="4_u3ey1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_snjfn"]
 render_priority = 0
 shader = ExtResource("2_ml85h")
 shader_parameter/outline_color = Color(0.6611114, 1, 0.63692135, 1)
 shader_parameter/outline_thickness = 0.0590000028025
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13qdw"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("4_u3ey1")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_7pmv8"]
+material = SubResource("StandardMaterial3D_13qdw")
 
 [node name="ShrineVisual" unique_id=732721882 instance=ExtResource("1_ohh3r")]
 script = ExtResource("2_41fli")
@@ -33,3 +43,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8496352, 1.7, 0)
 light_color = Color(0.54901963, 1, 0.4627451, 1)
 light_energy = 0.5
 omni_range = 2.0
+
+[node name="GhostIcon" type="MeshInstance3D" parent="." index="8" unique_id=491574364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 2.1, -0.3)
+transparency = 1.0
+mesh = SubResource("QuadMesh_7pmv8")
+
+[node name="GhostAmountLabel" type="Label3D" parent="." index="9" unique_id=1677701229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1.9000001, 0.10000001)
+transparency = 1.0
+billboard = 1
+text = "x1"
+font_size = 64
+horizontal_alignment = 2

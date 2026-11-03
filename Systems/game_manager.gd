@@ -79,8 +79,8 @@ func _set_moonlight_following(following: bool) -> void:
 
 func _on_moonlight_non_target_entered(body: Node3D) -> void:
 	if is_moonlight_following and body is Ghost:
-		ghost_spawner.deactivate_ghost(body)
-		ghost_counter.add_ghost()
+		if ghost_spawner.deactivate_ghost(body):
+			ghost_counter.add_ghost()
 
 
 func _on_all_ghosts_inactive() -> void:

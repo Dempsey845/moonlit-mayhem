@@ -42,6 +42,8 @@ func interact():
 	if upgrade_manager.try_apply_upgrade(shrine_type as UpgradeManager.UpgradeType):
 		if upgrade_manager.is_upgrade_maxed(shrine_type as UpgradeManager.UpgradeType):
 			shrine_visual.hide_outline()
+			shrine_visual.hide_amount()
+		_update_cost_label()
 	else:
 		print("Upgrade failed!")
 
@@ -54,6 +56,10 @@ func _on_interact_area_body_entered(body: Node3D):
 	if !upgrade_manager.is_upgrade_maxed(shrine_type as UpgradeManager.UpgradeType):
 		shrine_visual.show_outline()
 
+		_update_cost_label()
+
+		shrine_visual.show_amount()
+
 func _on_interact_area_body_exited(body: Node3D):
 	if body is not Player:
 		return
@@ -61,3 +67,9 @@ func _on_interact_area_body_exited(body: Node3D):
 	player_in_interact_area = false
 
 	shrine_visual.hide_outline()
+	shrine_visual.hide_amount()
+
+func _update_cost_label():
+	shrine_visual.set_ghost_amount_label (
+		upgrade_manager.get_upgrade_cost(shrine_type as UpgradeManager.UpgradeType)
+	)

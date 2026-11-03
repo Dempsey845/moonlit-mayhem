@@ -14,25 +14,33 @@ enum UpgradeType {
 @onready var upgrade_info: Dictionary[UpgradeType, Dictionary] = {
     UpgradeType.Heart: {
         "max_upgrades": 5,
-        "increase": 1
+        "increase": 1,
+        "initial_cost": 2,
+        "cost_increase": 2
     },
     UpgradeType.Speed: {
         "max_upgrades": 5,
         "increase": 1,
         "property_name": &"speed",
-        "target_node": player
+        "target_node": player,
+        "initial_cost": 3,
+        "cost_increase": 3
     },
     UpgradeType.Duration: {
         "max_upgrades": 5,
         "increase": 2,
         "property_name": &"shrink_duration",
-        "target_node": moonlight
+        "target_node": moonlight,
+        "initial_cost": 2,
+        "cost_increase": 2
     },
     UpgradeType.Angle: {
         "max_upgrades": 5,
         "increase": 5,
         "property_name": &"starting_angle",
-        "target_node": moonlight
+        "target_node": moonlight,
+        "initial_cost": 2,
+        "cost_increase": 3
     }
 }
 
@@ -82,3 +90,8 @@ func is_upgrade_maxed(type: UpgradeType) -> bool:
     var info: Dictionary = upgrade_info[type]
 
     return upgrades[type] >= info["max_upgrades"]
+
+func get_upgrade_cost(type: UpgradeType) -> int:
+    var info: Dictionary = upgrade_info[type]
+
+    return (upgrades[type] * info["cost_increase"]) + info["initial_cost"]

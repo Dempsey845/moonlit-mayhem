@@ -74,4 +74,4 @@ func upgrade_max_health(amount: int, restore_health: bool = true) -> void:
 	max_health += amount
 
 	if restore_health:
-		heal(amount)
+		heal(max_health)

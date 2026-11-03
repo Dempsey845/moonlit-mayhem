@@ -62,10 +62,11 @@ player = NodePath("../Player")
 ghost_spawner = NodePath("../GhostSpawner")
 ghost_counter = NodePath("../GhostCounter")
 
-[node name="UpgradeManager" type="Node" parent="." unique_id=1531840155 node_paths=PackedStringArray("player", "moonlight")]
+[node name="UpgradeManager" type="Node" parent="." unique_id=1531840155 node_paths=PackedStringArray("player", "moonlight", "ghost_counter")]
 script = ExtResource("2_kj6ab")
 player = NodePath("../Player")
 moonlight = NodePath("../Moonlight")
+ghost_counter = NodePath("../GhostCounter")
 
 [node name="GhostCounter" type="Node" parent="." unique_id=894495734]
 script = ExtResource("3_lsij0")

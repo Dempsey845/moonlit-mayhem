@@ -2,6 +2,7 @@ class_name GhostCounter
 extends Node
 
 signal ghost_added
+signal ghost_removed
 
 var _ghost_count: int = 0
 var ghost_count: int:
@@ -13,3 +14,10 @@ var ghost_count: int:
 func add_ghost():
     ghost_count += 1
     ghost_added.emit()
+
+func remove_ghosts(amount: int):
+    ghost_count -= amount
+
+    ghost_count = max(0, ghost_count)
+
+    ghost_removed.emit()

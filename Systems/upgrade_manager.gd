@@ -10,6 +10,7 @@ enum UpgradeType {
 
 @export var player: Player
 @export var moonlight: Moonlight
+@export var ghost_counter: GhostCounter
 
 @onready var upgrade_info: Dictionary[UpgradeType, Dictionary] = {
     UpgradeType.Heart: {
@@ -54,8 +55,14 @@ var upgrades: Dictionary[UpgradeType, int] = {
 func try_apply_upgrade(type: UpgradeType) -> bool:
     var info: Dictionary = upgrade_info[type]
 
+    var cost: int = get_upgrade_cost(type)
+
     if upgrades[type] >= info["max_upgrades"]:
         print("This upgrade has reached its max level!")
+        return false
+
+    if cost > ghost_counter.ghost_count:
+        print("Does not have enough ghosts for upgrade")
         return false
 
     if !info.has("property_name") or !info.has("target_node"):
@@ -83,6 +90,8 @@ func try_apply_upgrade(type: UpgradeType) -> bool:
     target_node.set(property_name, property + info["increase"])
     
     upgrades[type] += 1
+
+    ghost_counter.remove_ghosts(cost)
 
     return true
 

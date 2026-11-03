@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bb07qog8o0xqa"]
+
+[ext_resource type="Texture2D" uid="uid://xjgwx1cbekef" path="res://Player/Heart.png" id="1_wv5f2"]
+
+[node name="HeartImageRect" type="TextureRect" unique_id=948551177]
+custom_maximum_size = Vector2(100, 100)
+texture = ExtResource("1_wv5f2")
+expand_mode = 2
+stretch_mode = 5

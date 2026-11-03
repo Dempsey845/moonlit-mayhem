@@ -29,3 +29,6 @@ func reset_death_effect() -> void:
         death_tween.kill()
 
     ghost_mesh.set_instance_shader_parameter("death_progress", 0.0)
+
+func play_attack_animation():
+    animation_player.play("attack")

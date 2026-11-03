@@ -84,6 +84,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(0, 3.1415925, 0), Vector3(0.2443461, 3.1415927, 0), Vector3(0, 3.1415925, 0)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rhyd0"]
 resource_name = "bob"
@@ -136,6 +150,8 @@ _data = {
 &"revive": SubResource("Animation_bs0kc")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_gei8a"]
+
 [node name="Ghost" type="CharacterBody3D" unique_id=250297818]
 collision_layer = 2
 collision_mask = 3
@@ -158,3 +174,11 @@ transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, -
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_bs0kc")
 autoplay = &"bob"
+
+[node name="AttackArea" type="Area3D" parent="." unique_id=1120610829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.9)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=1209643459]
+shape = SubResource("SphereShape3D_gei8a")

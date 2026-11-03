@@ -800,57 +800,70 @@ shape = SubResource("CylinderShape3D_gei8a")
 
 [node name="Ghosts" type="Node3D" parent="." unique_id=1577121120]
 
-[node name="Ghost" parent="Ghosts" unique_id=250297818 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost" parent="Ghosts" unique_id=250297818 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost2" parent="Ghosts" unique_id=921682990 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost2" parent="Ghosts" unique_id=921682990 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.798174, 0, -6.384566)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost3" parent="Ghosts" unique_id=1240601739 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost3" parent="Ghosts" unique_id=1240601739 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.683134, -9.536743e-07, 6.1117854)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost4" parent="Ghosts" unique_id=1604923520 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost4" parent="Ghosts" unique_id=1604923520 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3772993, -9.536743e-07, 6.23109)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost5" parent="Ghosts" unique_id=1491107534 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost5" parent="Ghosts" unique_id=1491107534 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7621, -1.9073486e-06, 0.7538872)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost6" parent="Ghosts" unique_id=1180361364 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost6" parent="Ghosts" unique_id=1180361364 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.897991, -2.861023e-06, -7.6761713)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost7" parent="Ghosts" unique_id=1783376119 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost7" parent="Ghosts" unique_id=1783376119 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.644883, -3.8146973e-06, 1.9613447)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost8" parent="Ghosts" unique_id=670884773 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost8" parent="Ghosts" unique_id=670884773 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7437701, -4.7683716e-06, 7.012612)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost9" parent="Ghosts" unique_id=2019152283 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost9" parent="Ghosts" unique_id=2019152283 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7376575, -3.8146973e-06, -7.8184886)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost10" parent="Ghosts" unique_id=1464912033 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost10" parent="Ghosts" unique_id=1464912033 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.570692, -3.8146973e-06, 3.471211)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost11" parent="Ghosts" unique_id=175797724 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost11" parent="Ghosts" unique_id=175797724 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16193, -4.7683716e-06, -2.182788)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost12" parent="Ghosts" unique_id=1588996048 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost12" parent="Ghosts" unique_id=1588996048 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.775609, -4.7683716e-06, 3.9407158)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
-[node name="Ghost13" parent="Ghosts" unique_id=1828244439 node_paths=PackedStringArray("player") instance=ExtResource("3_oqqt7")]
+[node name="Ghost13" parent="Ghosts" unique_id=1828244439 node_paths=PackedStringArray("player", "player_health") instance=ExtResource("3_oqqt7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6340313, -4.7683716e-06, -3.068523)
 player = NodePath("../../Player")
+player_health = NodePath("../../PlayerHealth")
 
 [node name="MoonlightSP" type="Marker3D" parent="." unique_id=193816565]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.974534, 0, -0.02279234)

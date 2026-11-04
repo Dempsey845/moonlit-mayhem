@@ -928,11 +928,12 @@ offset_bottom = 125.0
 script = ExtResource("18_75ydc")
 player_health = NodePath("../../PlayerHealth")
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." unique_id=1272259489]
+[node name="BackgroundGround" type="MeshInstance3D" parent="." unique_id=1272259489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3066237, 0)
 mesh = SubResource("ArrayMesh_wwqok")
 
 [node name="TreeBillboards" type="Node3D" parent="." unique_id=1089645481]
+metadata/_edit_lock_ = true
 
 [node name="TreeBillboard" parent="TreeBillboards" unique_id=2098604003 instance=ExtResource("19_j1mdy")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 2, -31)
@@ -1013,6 +1014,7 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -20, 2, -31)
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -36, 2, -37)
 
 [node name="BackgroundRocks" type="Node3D" parent="." unique_id=1764688759]
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BackgroundRocks" unique_id=477240521]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0, 7.7, 56)
@@ -1087,6 +1089,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 5.2, -58.6)
 mesh = SubResource("BoxMesh_xrivr")
 
 [node name="Grass" type="Node3D" parent="." unique_id=483395112]
+metadata/_edit_lock_ = true
 
 [node name="GrassBillboard" parent="Grass" unique_id=789482421 instance=ExtResource("20_75ydc")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7, 0.5431626, -5)
@@ -1131,6 +1134,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 9, 0.5431626, -2)
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4, 0.5431626, 6)
 
 [node name="BackgroundGrass" type="Node3D" parent="." unique_id=1510392724]
+metadata/_edit_lock_ = true
 
 [node name="GrassBillboard" parent="BackgroundGrass" unique_id=298171420 instance=ExtResource("20_75ydc")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -23, -0.45683745, -24)

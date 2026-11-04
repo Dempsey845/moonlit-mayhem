@@ -22,6 +22,8 @@ signal moved
 
 @export var random_spawn_radius: float = 8.0
 
+@export var fade_duration: float = 0.6
+
 @onready var detection_area: Area3D = $Area3D
 @onready var detection_shape: CollisionShape3D = $Area3D/CollisionShape3D
 
@@ -33,12 +35,17 @@ var starting_position: Vector3
 var cylinder: CylinderShape3D
 var last_spawn_point: Node3D
 
+var starting_energy: float
+
 const MIN_ANGLE: float = 15.0
 
 
 func _ready() -> void:
 	starting_angle = spot_angle
 	starting_position = global_position
+
+	starting_energy = light_energy
+	light_energy = 0.0
 
 	cylinder = CylinderShape3D.new()
 	detection_shape.shape = cylinder
@@ -53,9 +60,22 @@ func _ready() -> void:
 
 
 func _run_light_cycle() -> void:
+	var first_spawn := true
+
 	while is_inside_tree():
 		_set_light_angle(starting_angle)
+		light_energy = 0.0
 		show()
+
+		for body in detection_area.get_overlapping_bodies():
+			_on_body_entered(body)
+
+		if not first_spawn:
+			moved.emit()
+
+		first_spawn = false
+
+		await _fade_to(starting_energy)
 
 		var tween := create_tween()
 		tween.tween_method(
@@ -69,6 +89,8 @@ func _run_light_cycle() -> void:
 
 		deplenished.emit()
 
+		await _fade_to(0.0)
+
 		hide()
 		_set_target_in_light(false)
 
@@ -79,14 +101,19 @@ func _run_light_cycle() -> void:
 			maxf(respawn_delay, 0.01)
 		).timeout
 
-		show()
 
-		var bodies = detection_area.get_overlapping_bodies()
+func _fade_to(energy: float) -> void:
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(
+		self,
+		"light_energy",
+		energy,
+		maxf(fade_duration, 0.01)
+	)
 
-		for body in bodies:
-			_on_body_entered(body)
-
-		moved.emit()
+	await tween.finished
 
 
 func _set_light_angle(angle: float) -> void:

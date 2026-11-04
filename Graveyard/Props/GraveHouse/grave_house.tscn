@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://jgpdsyk3w48c"]
+
+[ext_resource type="PackedScene" uid="uid://clowsgjfpxa8p" path="res://Graveyard/Props/GraveHouse/GraveHouse.glb" id="1_7txkg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(7, 6.825732, 7)
+
+[node name="GraveHouse" type="StaticBody3D" unique_id=1119392120]
+
+[node name="GraveHouse" parent="." unique_id=67354011 instance=ExtResource("1_7txkg")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=163457025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.968091, 0)
+shape = SubResource("BoxShape3D_xrivr")

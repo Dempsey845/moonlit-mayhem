@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ctfof61m045vr"]
+
+[ext_resource type="Texture2D" uid="uid://crrud6egegavf" path="res://Graveyard/Background/TreeBillboard.png" id="1_f14dw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13qdw"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.16565639, 0.16565642, 0.16565639, 1)
+albedo_texture = ExtResource("1_f14dw")
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_xrivr"]
+
+[node name="TreeBillboard" type="MeshInstance3D" unique_id=2098604003]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_13qdw")
+mesh = SubResource("QuadMesh_xrivr")

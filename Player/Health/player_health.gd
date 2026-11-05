@@ -9,6 +9,10 @@ signal died
 
 @export var starting_max_health: int = 3
 
+@export_range(0.0, 5.0, 0.05, "suffix:s") var invulnerability_duration: float = 0.5
+
+var _is_invulnerable: bool = false
+
 var max_health: int = 3:
 	get:
 		return max_health
@@ -47,12 +51,22 @@ func _ready() -> void:
 
 
 func take_damage(amount: int) -> void:
-	if amount <= 0 or current_health == 0:
+	if amount <= 0 or current_health == 0 or _is_invulnerable:
 		return
 
 	var actual_damage: int = mini(amount, current_health)
+
+	if invulnerability_duration > 0.0 and actual_damage < current_health:
+		_start_invulnerability()
+
 	current_health -= actual_damage
 	damaged.emit(actual_damage)
+
+
+func _start_invulnerability() -> void:
+	_is_invulnerable = true
+	await get_tree().create_timer(invulnerability_duration, false).timeout
+	_is_invulnerable = false
 
 
 func heal(amount: int) -> void:

@@ -1,0 +1,190 @@
+[gd_scene format=4 uid="uid://qpt3jh3sivml"]
+
+[ext_resource type="Script" uid="uid://cfj457hn287qs" path="res://HealthPickup/health_pickup.gd" id="1_1v2xe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xrivr"]
+radius = 0.4
+
+[sub_resource type="Animation" id="Animation_tea4k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartVisualPivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeartVisualPivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e8hk0"]
+resource_name = "appear"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartVisualPivot:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.35),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_idle_animation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1v2xe"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartVisualPivot:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(0.9, 0.9, 0.9), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeartVisualPivot:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0), Vector3(0, 0.7, 0), Vector3(0, 0.5, 0), Vector3(0, 0.6, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5u6sw"]
+resource_name = "pickup"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeartVisualPivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2166667, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5u6sw"]
+_data = {
+&"RESET": SubResource("Animation_tea4k"),
+&"appear": SubResource("Animation_e8hk0"),
+&"idle": SubResource("Animation_1v2xe"),
+&"pickup": SubResource("Animation_5u6sw")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilij7"]
+resource_name = "Heart"
+cull_mode = 2
+albedo_color = Color(0.90656906, 0.25906727, 0.2042106, 1)
+roughness = 0.72834647
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mdjpp"]
+_surfaces = [{
+"aabb": AABB(-0.16038927, 2.2728307, -0.73508304, 0.32077855, 1.4204943, 1.4701661),
+"format": 34359742465,
+"index_count": 240,
+"index_data": PackedByteArray("FAAVABYAFAAAABUAAAAXABUAAAAUABgAAAABABcAAAAYAAEAAQAZABcAAQAYABkAFwAaABUAGQAbABcAFwAbABoAGwAcABoAFQAaAA0AFQANABYAGgAcAA4AGgAOAA0AGwACABwAAgAOABwAGQAdABsAHQACABsACwAdABkAGAALABkAHQAeAAIAAgAeAA4AAwAeAB0ACwADAB0AHgAFAA4ADQAOAAUAAwAEAB4AHgAEAAUADQAFAAYAFgANAAYABgAFAAQABgAEAAMAEwAFAAQAAwATAAQAEwAHAAUAAwARABMACwARAAMAEQAIABMACAAHABMACAAfAAcAEQAgAAgAIAAfAAgAIQAgABEACwAhABEAIAAiAB8AIgAHAB8AIQAjACAAIwAiACAADAAjACEAIgASAAcAEgAFAAcAEgAGAAUAJAASACIAIwAkACIAJQAGABIAJAAlABIAEAAkACMAEAAjAAwAJgAlACQAJgAkABAAEAAMACcAEAAnACYADAAhACcAJwAhAAsAJgAnAA8AJwALAA8AGAAPAAsAFAAPABgAJgAPAAoAFAAKAA8ACgAlACYACgAUABYACgAJACUACgAWAAkACQADAAsAJQAJAAYACQAGAAMAFgAGAAkA"),
+"lods": [0.31387344, PackedByteArray("CgAAAA0AAAAOAA0AAgAOAAAAAAABAAIAAAAKAAEAAgAEAA4ADQAOAAUABAAFAA4AAQADAAIAAwAEAAIACgAPAAEAAQAPAAsAAQALAAMAEAAPAAoADAALAA8AEAAMAA8ADAARAAsACwARAAMAEAAIAAwADAAIABEACgASABAACAAQAAcAEAASAAcAEQAIABMACAAHABMAAwARABMAAwATAAQAEwAHAAUAEgAFAAcAEwAFAAQACgAJABIACQADAAsACgANAAkABgAEAAMABgAFAAQACQAGAAMAEgAGAAUAEgAJAAYADQAFAAYADQAGAAkA"), 0.81403637, PackedByteArray("AAABAAIAAQADAAIAAwAEAAIAAAACAAUABAAFAAIAAAAFAAYABgAFAAQABAAHAAUABwAGAAUABgAEAAMACAAHAAQAAwAIAAQABwAJAAYACQAGAAMAAAAGAAkACgAAAAkAAAAKAAEACgAJAAcACQADAAsACwAIAAMAAQALAAMACAAMAAcACgAHAAwADAAIAAsACgAMAAEAAQAMAAsA")],
+"name": "Heart",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("Fj0kvjooNkAG2TS/Fj0kPjooNkAG2TS/Fj0kPl0oZECXQiW/Fj0kPqpFV0CuzBuyFj0kPikjX0CuzBuyFj0kvikjX0CuzBuyFj0kvqpFV0CuzBuyFj0kvnBfbECoGbw+Fj0kPl0oZECWQiU/Fj0kvq3nTECuzBuyFj0kvg92EUCuzBuyFj0kPq3nTECuzBuyFj0kPjooNkAG2TQ/Fj0kvptHV0CRJ7y+Fj0kvnBfbECoGby+Fj0kPg92EUCuzBuyFj0kvjooNkAG2TQ/Fj0kPptHV0CRJ7w+Fj0kvptHV0CRJ7w+Fj0kPnBfbECoGbw+Fj0kviTPI0AG2bS+Fj0kvo3rTEBnLjy/Fj0kvp3pTEBnLry+Fj0kPo3rTEBnLjy/Fj0kPiTPI0AG2bS+Fj0kPp3pTEBnLry+Fj0kvotJV0D8Kjy/Fj0kPotJV0D8Kjy/Fj0kvl0oZECXQiW/Fj0kPptHV0CRJ7y+Fj0kPnBfbECoGby+Fj0kvl0oZECWQiU/Fj0kPotJV0D8Kjw/Fj0kPp3pTEBnLrw+Fj0kvotJV0D8Kjw/Fj0kPo3rTEBnLjw/Fj0kvo3rTEBnLjw/Fj0kvp3pTEBnLrw+Fj0kviTPI0AG2bQ+Fj0kPiTPI0AG2bQ+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tea4k"]
+resource_name = "Shrine_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.16038927, 2.2728307, -0.73508304, 0.32077855, 1.4204943, 1.4701661),
+"attribute_data": PackedByteArray("AADAPgAAQD8AAMA+AAAAPwAAID8AAAA/AAAgPwAAYD8AACA/AABgPwAAID8AAGA/AAAgPwAAUD8AAMA+AABgPwAAwD4AAAA/AAAgPwAAAD8AAAA+AADAPgAAAD4AAAA/AAAgPwAAwD4AACA/AADAPgAAID8AAMA+AABgPwAA4D4AAGA/AADAPgAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAID8AAFA/AAAgPwAAUD8AACA/AABQPwAAwD4AAEA/AAAgPwAA4D4BACA//v/fPgAAYD8AAOA+AADAPgAAwD4AAAA+AAAAPwAAwD4AAFA/AAAgPwAAQD8AACA/AABQPwAAID8AAAA/AAAgPwAAUD8AAMA+AABQPwAAID8AAEA/AAAgPwAAQD8AACA/AAAAPwAAID8AAOA+AAAgPwAA4D7//78+AADgPgAAAD4AAOA+AAAAPgAA4D7//78+AADgPgAAID8AAOA+AAAgPwAAAD8AACA/AABAPwAAID8AAEA/AAAgPwAAQD8AACA/AAAAPwAAYD8AAAA/AQAgP/7/3z4AAGA/AAAAPw=="),
+"format": 34359742487,
+"index_count": 240,
+"index_data": PackedByteArray("IAAhACIAIAAAACEABwAgACIAAAAjACEAAAABACMABwAiAAUABwAFACQABwAkACUAIgAEAAUAJAAFAAQAIQAXACIAIgAXAAQAIQAmABcAIwAmACEAFwADAAQAJgAYABcAFwAYAAMAJgAnABgAGQAEAAMAJAAEABkAGQADAAYAKAAnACYAIwAoACYAKAACACcAKQAoACMAAQApACMAKgACACgAKQAqACgAAQArACkACwArAAEACwAsACsAKwAMACkADAAqACkALAAeACsAKwAeAAwALAAKAB4ALQAeAAoALQAuAB4ALgAMAB4AHwAuAC0AHwAIAC4ALgAvAAwACAAvAC4ACAAwAC8AGgAwAAgADAAvABsAGgAxADAAJQAxABoAJQAkADEAMQAkABkAMQAZADIAMAAxADIAMgAZAAYAMgAGADMAMAAyADQANAAyADMALwAwADQALwA0ABsANAAzAAkAGwA0AAkACQA1AA8ACQAPABwAGwAJABwAHAAPABAADQAbABwADAAbAA0ADAANACoADQAcAA4AHAAQAA4ADQA2ACoADQAOADYANgAOABAAKgA2AAIANgAQAB0AAgA2AB0AAgAdADcAEQASABMAEQAUABIAFAAVABIAFAAWABUA"),
+"lods": [0.31387344, PackedByteArray("BwAAABcAAAAYABcAFwAYAAMAAgAYAAAABwAXAAUAFwADAAQAFwAEAAUAGQAEAAMAGQAFAAQABwAFABkAGQADAAYABwAZABoAGgAZAAYACQAaAAYAGgAJAAgAAAABAAIACAAJABsAGwAJABwACQAPABwAHAAPABAAHAAQAA4ADgAQAB0AAgAOAB0ADQAcAA4ADQAOAAIADQAbABwAAQANAAIADAAbAA0AAQAMAA0ACAAbAAwACAAMAB4AAQAeAAwAHwAIAB4AHwAeAAoACgAeAAEACwAKAAEAEQASABMAEQAUABIAFAAVABIAFAAWABUA"), 0.81403637, PackedByteArray("AAABAAIAAAACAAMAAAADAAQAAAAEAAUABgAEAAMABgAFAAQABwAAAAUABwAFAAYABwAGAAgACQAIAAYACgAIAAEACwAKAAEACAAJAAwAAQAIAAwAAQAMAA0ADAAJAA0AAQANAAIADQAJAA4ADQAOAAIACQAPAA4ADgAQAAIADgAPABAAEQASABMAEQAUABIAFAAVABIAFAAWABUA")],
+"material": SubResource("StandardMaterial3D_ilij7"),
+"name": "Heart",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 56,
+"vertex_data": PackedByteArray("Fj0kvjooNkAG2TS/Fj0kPjooNkAG2TS/Fj0kPl0oZECXQiW/Fj0kvikjX0CuzBuyFj0kvqpFV0CuzBuyFj0kvq3nTECuzBuyFj0kvnBfbECoGbw+Fj0kvg92EUCuzBuyFj0kPjooNkAG2TQ/Fj0kPl0oZECWQiU/Fj0kvg92EUCuzBuyFj0kvjooNkAG2TS/Fj0kPq3nTECuzBuyFj0kPqpFV0CuzBuyFj0kPikjX0CuzBuyFj0kvnBfbECoGbw+Fj0kvikjX0CuzBuyFj0kvq3nTECuzBuyFj0kPqpFV0CuzBuyFj0kPq3nTECuzBuyFj0kvqpFV0CuzBuyFj0kPikjX0CuzBuyFj0kvikjX0CuzBuyFj0kvptHV0CRJ7y+Fj0kvnBfbECoGby+Fj0kvptHV0CRJ7w+Fj0kvjooNkAG2TQ/Fj0kPptHV0CRJ7w+Fj0kPnBfbECoGbw+Fj0kvnBfbECoGby+Fj0kPg92EUCuzBuyFj0kvjooNkAG2TQ/Fj0kviTPI0AG2bS+Fj0kvo3rTEBnLjy/Fj0kvp3pTEBnLry+Fj0kPo3rTEBnLjy/Fj0kvp3pTEBnLrw+Fj0kviTPI0AG2bQ+Fj0kvotJV0D8Kjy/Fj0kvl0oZECXQiW/Fj0kPotJV0D8Kjy/Fj0kPp3pTEBnLry+Fj0kPptHV0CRJ7y+Fj0kPiTPI0AG2bS+Fj0kviTPI0AG2bS+Fj0kviTPI0AG2bQ+Fj0kPiTPI0AG2bQ+Fj0kPp3pTEBnLrw+Fj0kPo3rTEBnLjw/Fj0kvo3rTEBnLjw/Fj0kvotJV0D8Kjw/Fj0kvl0oZECWQiU/Fj0kPotJV0D8Kjw/Fj0kvl0oZECWQiU/Fj0kPnBfbECoGby+Fj0kvl0oZECXQiW/ohvlL9BSAfdc5OUvha5G69PX4tBWN3/iEUFXqf///z+qKv9/////P5gZ/3//fwAAGEbpyP///78JSvY15jZcJeSvXWRvqUIXHK8qqAFFVCQJSvY1CMr6WqIb5S/16JqeZub/f0SCxP9U1f9/+3/4/+2+V6lRUibaGEbpyIQ5pVsRQVepTjQoaZgZ/3////8/VNX/f////z9m5v9/////P6oq/3////8/7b5Xqf///z8RQVep////PwAA/3////+/6UgXxv///z8AAP9/////vxpQXWQEbpcW////f////7/muenIVDjWI+lIF8ZLNzyj9bX2NQjKBCUaUF1kNr2ES0spLzXNQgLuiQL2PRKHbf8AAP9/voH//3X99j2Fdsv+AAD/f/9/3wDPSrRWBlyYHtcMQsn///+/Kyji0P///78n80LJ////v////3+ZhP//////f/9/+f+z1i81YLfd4EspLzWz1peaz0q0Vi61pVQvtbRWQr6wG////3////+/9b11fZl9vQQJQnV9IYGJA0NJ14z///8/4lAqqP///z+7tteM////P+JQKqgzIm9iFbcXxlI4KdwrKOLQ30Tlrg==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mdjpp")
+
+[node name="HealthPickup" type="Area3D" unique_id=541596479]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_1v2xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1621053313]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("SphereShape3D_xrivr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1821588728]
+libraries/ = SubResource("AnimationLibrary_5u6sw")
+autoplay = &"appear"
+
+[node name="HeartVisualPivot" type="Node3D" parent="." unique_id=928864824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="Heart" type="MeshInstance3D" parent="HeartVisualPivot" unique_id=1774317715]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, -2, 0)
+mesh = SubResource("ArrayMesh_tea4k")

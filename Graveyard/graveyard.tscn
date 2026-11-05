@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ctfof61m045vr" path="res://Graveyard/Background/tree_billboard.tscn" id="19_j1mdy"]
 [ext_resource type="PackedScene" uid="uid://bmhyaqaoxgws8" path="res://Graveyard/Background/grass_billboard.tscn" id="20_75ydc"]
 [ext_resource type="PackedScene" uid="uid://jgpdsyk3w48c" path="res://Graveyard/Props/GraveHouse/grave_house.tscn" id="21_yf8gw"]
+[ext_resource type="PackedScene" uid="uid://qpt3jh3sivml" path="res://HealthPickup/health_pickup.tscn" id="23_oumb1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2rhk"]
 shader = ExtResource("3_83jfa")
@@ -1231,3 +1232,6 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 26, -0.45683745, 16)
 
 [node name="GrassBillboard32" parent="BackgroundGrass" unique_id=1486604773 instance=ExtResource("20_75ydc")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 26, -0.45683745, -2)
+
+[node name="HealthPickup" parent="." unique_id=541596479 node_paths=PackedStringArray("player_health") instance=ExtResource("23_oumb1")]
+player_health = NodePath("../PlayerHealth")

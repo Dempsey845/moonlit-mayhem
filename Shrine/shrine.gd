@@ -17,11 +17,15 @@ enum ShrineType {
 
 var player_in_interact_area: bool = false
 
+var active: bool = true
+
 func _ready() -> void:
 	show_correct_visual()
 
 	interact_area.body_entered.connect(_on_interact_area_body_entered)
 	interact_area.body_exited.connect(_on_interact_area_body_exited)
+
+	shrine_visual.max_uses = upgrade_manager.get_max_upgrades(shrine_type as UpgradeManager.UpgradeType)
 
 func _process(_delta: float) -> void:
 	if player_in_interact_area and Input.is_action_just_pressed("interact"):
@@ -39,10 +43,16 @@ func show_correct_visual():
 			shrine_visual.angle_mesh.show()
 
 func interact():
+	if !active:
+		return
+
 	if upgrade_manager.try_apply_upgrade(shrine_type as UpgradeManager.UpgradeType):
 		if upgrade_manager.is_upgrade_maxed(shrine_type as UpgradeManager.UpgradeType):
 			shrine_visual.hide_outline()
 			shrine_visual.hide_amount()
+			shrine_visual.hide_shrine_light()
+			active = false
+		shrine_visual.fill()
 		_update_cost_label()
 	else:
 		print("Upgrade failed!")

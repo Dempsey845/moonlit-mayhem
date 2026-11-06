@@ -26,6 +26,9 @@ script = ExtResource("2_41fli")
 [node name="Shrine" parent="." index="0" unique_id=742055505]
 material_overlay = SubResource("ShaderMaterial_snjfn")
 
+[node name="BowlFill" parent="." index="2" unique_id=1396349421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014, 0)
+
 [node name="Heart" parent="." index="3" unique_id=771954357]
 visible = false
 

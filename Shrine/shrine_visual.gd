@@ -9,11 +9,21 @@ extends Node3D
 @onready var angle_mesh: MeshInstance3D = $MoonAngle
 @onready var ghost_icon: MeshInstance3D = $GhostIcon
 @onready var ghost_amount_label: Label3D = $GhostAmountLabel
+@onready var shrine_light: OmniLight3D = $OmniLight3D
+@onready var bowl_fill: MeshInstance3D = $BowlFill
+
+var current_uses: int = 0
+var max_uses: int
 
 var outline_tween: Tween
 
 var amount_tween: Tween
 var icon_tween: Tween
+
+var start_fill_y: float = 0.014
+var fill_max_y: float = 0.1
+
+var _shrine_light_tween: Tween
 
 func show_outline(duration: float = 0.2) -> void:
 	_set_outline_strength(1.0, duration)
@@ -84,3 +94,23 @@ func _set_icon_transparency(target: float, duration: float) -> void:
 
 func set_ghost_amount_label(cost: int):
 	ghost_amount_label.text = "x" + str(cost)
+
+func hide_shrine_light(duration: float = 0.5) -> void:
+	if _shrine_light_tween and _shrine_light_tween.is_running():
+		_shrine_light_tween.kill()
+
+	_shrine_light_tween = create_tween()
+	_shrine_light_tween.tween_property(
+		shrine_light, "light_energy", 0.0, duration
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_shrine_light_tween.tween_callback(shrine_light.hide)
+
+func fill():
+	if current_uses >= max_uses:
+		return
+
+	var fill_increment_y: float = (fill_max_y - start_fill_y) / max_uses
+
+	bowl_fill.position.y += fill_increment_y
+
+	current_uses += 1

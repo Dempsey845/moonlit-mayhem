@@ -122,6 +122,10 @@ func is_upgrade_maxed(type: UpgradeType) -> bool:
 
 	return upgrades[type] >= info["max_upgrades"]
 
+func get_max_upgrades(type: UpgradeType) -> int:
+	var info: Dictionary = upgrade_info[type]
+	return info["max_upgrades"]
+
 func get_upgrade_cost(type: UpgradeType) -> int:
 	var info: Dictionary = upgrade_info[type]
 

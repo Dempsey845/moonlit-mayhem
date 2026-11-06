@@ -40,6 +40,8 @@ func _ready() -> void:
 		ghost_spawner.max_ghosts
 	)
 
+	await get_tree().create_timer(3.0).timeout
+
 	_spawn_wave_after_delay()
 
 

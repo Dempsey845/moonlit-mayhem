@@ -2,6 +2,8 @@ extends NavigationObstacle3D
 
 @export var moonlight: Moonlight
 
+@export var enabled: bool = true
+
 var previous_angle: float
 
 func _ready() -> void:
@@ -16,7 +18,7 @@ func _ready() -> void:
 	)
 
 	moonlight.moved.connect(func():
-		avoidance_enabled = true
+		avoidance_enabled = enabled and true
 	)
 
 func _process(_delta: float) -> void:

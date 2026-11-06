@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dl5hqwty7bu8c"]
+
+[ext_resource type="Script" uid="uid://olh25i4xbru0" path="res://Graveyard/transition_ui.gd" id="1_afscw"]
+[ext_resource type="Shader" uid="uid://5ajbrs16fcs" path="res://Shaders/graveyard_transition.gdshader" id="2_5vhjw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrivr"]
+resource_local_to_scene = true
+shader = ExtResource("2_5vhjw")
+shader_parameter/progress = 0.0
+shader_parameter/edge_softness = 0.015
+
+[node name="TransitionUI" type="Control" unique_id=1629849581]
+z_index = 1000
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_afscw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=166628705]
+material = SubResource("ShaderMaterial_xrivr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

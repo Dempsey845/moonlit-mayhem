@@ -29,7 +29,7 @@ var move_blend: float = 0.0
 
 func _ready() -> void:
 	spring_arm.add_excluded_object(get_rid())
-	camera.make_current()
+	# camera.make_current()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	health.damaged.connect(_on_damaged)

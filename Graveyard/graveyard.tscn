@@ -19,10 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://bjdwkm8e8x40k" path="res://Graveyard/Props/Tree/tree.tscn" id="10_kj6ab"]
 [ext_resource type="PackedScene" uid="uid://bvm4id7brgihy" path="res://Shrine/shrine.tscn" id="13_n2rhk"]
 [ext_resource type="PackedScene" uid="uid://c05fu0m4mmo28" path="res://GhostCounter/ghost_counter_ui.tscn" id="16_wwqok"]
+[ext_resource type="Script" uid="uid://ctyl26qjlbijr" path="res://Graveyard/transition_camera.gd" id="17_gp0nj"]
 [ext_resource type="Script" uid="uid://bqsobdmoj43ij" path="res://Player/Health/health_ui.gd" id="18_75ydc"]
 [ext_resource type="PackedScene" uid="uid://ctfof61m045vr" path="res://Graveyard/Background/tree_billboard.tscn" id="19_j1mdy"]
 [ext_resource type="PackedScene" uid="uid://bmhyaqaoxgws8" path="res://Graveyard/Background/grass_billboard.tscn" id="20_75ydc"]
 [ext_resource type="PackedScene" uid="uid://jgpdsyk3w48c" path="res://Graveyard/Props/GraveHouse/grave_house.tscn" id="21_yf8gw"]
+[ext_resource type="PackedScene" uid="uid://dl5hqwty7bu8c" path="res://Graveyard/transition_ui.tscn" id="23_ts1ge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2rhk"]
 shader = ExtResource("3_83jfa")
@@ -50,7 +52,6 @@ sky_material = SubResource("ShaderMaterial_n2rhk")
 background_mode = 2
 sky = SubResource("Sky_puhq3")
 glow_enabled = true
-fog_enabled = true
 fog_density = 0.0005
 fog_sky_affect = 0.02
 
@@ -807,15 +808,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15000057, 1.35, 0)
 shape = SubResource("BoxShape3D_xrivr")
 
 [node name="Player" parent="." unique_id=406549635 node_paths=PackedStringArray("health") instance=ExtResource("1_puhq3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6437583, 0, -5.8968515)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4437582, 0, 5.3031483)
 health = NodePath("../PlayerHealth")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2064649073]
-transform = Transform3D(1, 0, 0, 0, 0.6390457, 0.7691688, 0, -0.7691688, 0.6390457, 0.078620434, 9.246862, 11.417019)
-visible = false
+[node name="TransitionCamera" type="Camera3D" parent="." unique_id=2064649073 node_paths=PackedStringArray("player", "ui_controls")]
+transform = Transform3D(-0.935136, 0.0658066, -0.34812355, 0, 0.9825984, 0.18574286, 0.35428876, 0.17369485, -0.91886324, -4.7245884, 2.282649, -4.4936724)
+current = true
+script = ExtResource("17_gp0nj")
+player = NodePath("../Player")
+ui_controls = [NodePath("../CanvasLayer/GhostCounterUI"), NodePath("../CanvasLayer/HealthUI")]
 
 [node name="Moonlight" type="SpotLight3D" parent="." unique_id=884361163 node_paths=PackedStringArray("spawn_points")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8.1, 4, 2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.5, 4, 5.3)
 light_energy = 4.644
 spot_range = 8.0
 spot_attenuation = 1.4
@@ -919,22 +923,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.990372, 0, 13.220003)
 [node name="MoonlightObstacle" type="NavigationObstacle3D" parent="." unique_id=2099228405 node_paths=PackedStringArray("moonlight")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 vertices = PackedVector3Array(-2.5, 0, -2.5, 2.5, 0, -2.5, 2.5, 0, 2.5, -2.5, 0, 2.5)
+avoidance_enabled = false
 avoidance_layers = 2
 script = ExtResource("6_isfp6")
 moonlight = NodePath("../Moonlight")
+enabled = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1491475656]
 
 [node name="GhostCounterUI" parent="CanvasLayer" unique_id=492207688 node_paths=PackedStringArray("ghost_counter") instance=ExtResource("16_wwqok")]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
 ghost_counter = NodePath("../../GhostCounter")
 
 [node name="HealthUI" type="HBoxContainer" parent="CanvasLayer" unique_id=1317407268 node_paths=PackedStringArray("player_health")]
+modulate = Color(1, 1, 1, 0)
 offset_left = 31.0
 offset_top = 21.0
 offset_right = 1052.0
 offset_bottom = 125.0
+mouse_filter = 2
 script = ExtResource("18_75ydc")
 player_health = NodePath("../../PlayerHealth")
+
+[node name="TransitionUI" parent="CanvasLayer" unique_id=1629849581 instance=ExtResource("23_ts1ge")]
 
 [node name="BackgroundGround" type="MeshInstance3D" parent="." unique_id=1272259489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3066237, 0)

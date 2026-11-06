@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
+@export var health: PlayerHealth
+
 @export var speed: float = 5.0
 @export var acceleration: float = 25.0
 @export var deceleration: float = 30.0
@@ -21,6 +23,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $CameraPivot/SpringArm3D/Camera3D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var hit_particles: GPUParticles3D = $HitParticles
 
 var move_blend: float = 0.0
 
@@ -28,6 +31,8 @@ func _ready() -> void:
 	spring_arm.add_excluded_object(get_rid())
 	camera.make_current()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	health.damaged.connect(_on_damaged)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -86,3 +91,6 @@ func _physics_process(delta: float) -> void:
 	)
 
 	animation_tree.set("parameters/MoveBlend/blend_amount", move_blend)
+
+func _on_damaged(_amount: int):
+	hit_particles.emitting = true

@@ -806,8 +806,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 19.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15000057, 1.35, 0)
 shape = SubResource("BoxShape3D_xrivr")
 
-[node name="Player" parent="." unique_id=406549635 instance=ExtResource("1_puhq3")]
+[node name="Player" parent="." unique_id=406549635 node_paths=PackedStringArray("health") instance=ExtResource("1_puhq3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6437583, 0, -5.8968515)
+health = NodePath("../PlayerHealth")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2064649073]
 transform = Transform3D(1, 0, 0, 0, 0.6390457, 0.7691688, 0, -0.7691688, 0.6390457, 0.078620434, 9.246862, 11.417019)

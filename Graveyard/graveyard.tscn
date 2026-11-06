@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bk7ckwee7sgcd" path="res://GhostCounter/ghost_counter.gd" id="3_lsij0"]
 [ext_resource type="PackedScene" uid="uid://wrg516q7xe4g" path="res://Ghost/ghost.tscn" id="3_oqqt7"]
 [ext_resource type="Script" uid="uid://b4hyv5be10j24" path="res://Player/Health/player_health.gd" id="5_j1mdy"]
+[ext_resource type="Script" uid="uid://g25jwebm3hpw" path="res://Graveyard/health_pickup_spawner.gd" id="6_gp0nj"]
 [ext_resource type="Script" uid="uid://dfyscog17m1e1" path="res://Moonlight/moonlight_obstacle.gd" id="6_isfp6"]
 [ext_resource type="PackedScene" uid="uid://cwwa4fkdp3rpt" path="res://Graveyard/Props/StonePillar/stone_pillar.tscn" id="7_jaj5c"]
 [ext_resource type="PackedScene" uid="uid://bp1hon3n50hnt" path="res://Graveyard/Props/Gate/Gate.glb" id="7_ux5rj"]
@@ -22,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://ctfof61m045vr" path="res://Graveyard/Background/tree_billboard.tscn" id="19_j1mdy"]
 [ext_resource type="PackedScene" uid="uid://bmhyaqaoxgws8" path="res://Graveyard/Background/grass_billboard.tscn" id="20_75ydc"]
 [ext_resource type="PackedScene" uid="uid://jgpdsyk3w48c" path="res://Graveyard/Props/GraveHouse/grave_house.tscn" id="21_yf8gw"]
-[ext_resource type="PackedScene" uid="uid://qpt3jh3sivml" path="res://HealthPickup/health_pickup.tscn" id="23_oumb1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2rhk"]
 shader = ExtResource("3_83jfa")
@@ -104,12 +104,13 @@ size = Vector3(20, 22.2, 20)
 
 [node name="Graveyard" type="Node3D" unique_id=378118441]
 
-[node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_spawner", "ghost_counter")]
+[node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_spawner", "ghost_counter", "health_pickup_spawner")]
 script = ExtResource("1_2m5em")
 moonlight = NodePath("../Moonlight")
 player = NodePath("../Player")
 ghost_spawner = NodePath("../GhostSpawner")
 ghost_counter = NodePath("../GhostCounter")
+health_pickup_spawner = NodePath("../HealthPickupSpawner")
 
 [node name="UpgradeManager" type="Node" parent="." unique_id=1531840155 node_paths=PackedStringArray("player", "moonlight", "ghost_counter", "player_health")]
 script = ExtResource("2_kj6ab")
@@ -127,6 +128,11 @@ ghost_container = NodePath("../Ghosts")
 
 [node name="PlayerHealth" type="Node" parent="." unique_id=1652828479]
 script = ExtResource("5_j1mdy")
+
+[node name="HealthPickupSpawner" type="Node" parent="." unique_id=676185395 node_paths=PackedStringArray("health_pickup_points", "player_health")]
+script = ExtResource("6_gp0nj")
+health_pickup_points = NodePath("../HealthPickupPoints")
+player_health = NodePath("../PlayerHealth")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1076600132]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -1233,5 +1239,28 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 26, -0.45683745, 16)
 [node name="GrassBillboard32" parent="BackgroundGrass" unique_id=1486604773 instance=ExtResource("20_75ydc")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 26, -0.45683745, -2)
 
-[node name="HealthPickup" parent="." unique_id=541596479 node_paths=PackedStringArray("player_health") instance=ExtResource("23_oumb1")]
-player_health = NodePath("../PlayerHealth")
+[node name="HealthPickupPoints" type="Node3D" parent="." unique_id=1572046064]
+
+[node name="Marker3D" type="Marker3D" parent="HealthPickupPoints" unique_id=1090086072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -11)
+
+[node name="Marker3D2" type="Marker3D" parent="HealthPickupPoints" unique_id=1292672170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -14)
+
+[node name="Marker3D3" type="Marker3D" parent="HealthPickupPoints" unique_id=1159891201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -10)
+
+[node name="Marker3D4" type="Marker3D" parent="HealthPickupPoints" unique_id=2096893958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+
+[node name="Marker3D5" type="Marker3D" parent="HealthPickupPoints" unique_id=1415468513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 2)
+
+[node name="Marker3D6" type="Marker3D" parent="HealthPickupPoints" unique_id=1409917419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 13)
+
+[node name="Marker3D7" type="Marker3D" parent="HealthPickupPoints" unique_id=1498295186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 14)
+
+[node name="Marker3D8" type="Marker3D" parent="HealthPickupPoints" unique_id=729238627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 8)

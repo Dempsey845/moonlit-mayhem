@@ -1,9 +1,9 @@
+class_name HealthPickup
 extends Area3D
-
-@export var player_health: PlayerHealth
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var player_health: PlayerHealth
 var collected: bool = false
 
 func _ready() -> void:

@@ -6,6 +6,7 @@ const SPAWN_DELAY: float = 2.0
 @export var player: Player
 @export var ghost_spawner: GhostSpawner
 @export var ghost_counter: GhostCounter
+@export var health_pickup_spawner: HealthPickupSpawner
 @export_range(0.0, 30.0) var moon_light_follow_speed: float = 12.0
 
 var is_moonlight_following: bool = false
@@ -108,3 +109,7 @@ func _spawn_wave_after_delay() -> void:
 
 	ghost_spawner.spawn_ghosts(_wave_size, start_state)
 	_spawn_pending = false
+
+	var spawn_pickup: bool = randi_range(0, 2) == 1
+	if spawn_pickup:
+		health_pickup_spawner.try_spawn_health_pickup()

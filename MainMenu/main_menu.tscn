@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dbyfdoyyhd0d4" path="res://Graveyard/graveyard.tscn" id="2_kbpwf"]
 [ext_resource type="PackedScene" uid="uid://q70xb5it24fc" path="res://Graveyard/Props/Cross/cross.tscn" id="3_5de1l"]
 [ext_resource type="PackedScene" uid="uid://dl5hqwty7bu8c" path="res://Graveyard/transition_ui.tscn" id="6_kbpwf"]
+[ext_resource type="Script" uid="uid://ctkrfuqe12ffl" path="res://Settings/main_menu_settings_bridge.gd" id="settings_bridge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3w4mj"]
 shader = ExtResource("1_nhkf3")
@@ -249,6 +250,9 @@ text = "Quit"
 
 [node name="TransitionUI" parent="MenuUI" unique_id=1629849581 instance=ExtResource("6_kbpwf")]
 
+[node name="SettingsBridge" type="Node" parent="." unique_id=1926753056]
+script = ExtResource("settings_bridge")
+
 [connection signal="pressed" from="MenuUI/Layout/Menu/Play" to="." method="_play"]
-[connection signal="pressed" from="MenuUI/Layout/Menu/Settings" to="." method="_settings"]
+[connection signal="pressed" from="MenuUI/Layout/Menu/Settings" to="SettingsBridge" method="open_settings"]
 [connection signal="pressed" from="MenuUI/Layout/Menu/Quit" to="." method="_quit"]

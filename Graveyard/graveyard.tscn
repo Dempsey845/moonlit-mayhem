@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b4hyv5be10j24" path="res://Player/Health/player_health.gd" id="5_j1mdy"]
 [ext_resource type="Script" uid="uid://g25jwebm3hpw" path="res://Graveyard/health_pickup_spawner.gd" id="6_gp0nj"]
 [ext_resource type="Script" uid="uid://dfyscog17m1e1" path="res://Moonlight/moonlight_obstacle.gd" id="6_isfp6"]
+[ext_resource type="Script" uid="uid://chm8frt17hpbm" path="res://Systems/death_manager.gd" id="7_fib0g"]
 [ext_resource type="PackedScene" uid="uid://cwwa4fkdp3rpt" path="res://Graveyard/Props/StonePillar/stone_pillar.tscn" id="7_jaj5c"]
 [ext_resource type="PackedScene" uid="uid://bp1hon3n50hnt" path="res://Graveyard/Props/Gate/Gate.glb" id="7_ux5rj"]
 [ext_resource type="PackedScene" uid="uid://q70xb5it24fc" path="res://Graveyard/Props/Cross/cross.tscn" id="8_83jfa"]
@@ -25,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bmhyaqaoxgws8" path="res://Graveyard/Background/grass_billboard.tscn" id="20_75ydc"]
 [ext_resource type="PackedScene" uid="uid://jgpdsyk3w48c" path="res://Graveyard/Props/GraveHouse/grave_house.tscn" id="21_yf8gw"]
 [ext_resource type="PackedScene" uid="uid://dl5hqwty7bu8c" path="res://Graveyard/transition_ui.tscn" id="23_ts1ge"]
+[ext_resource type="Script" uid="uid://3dim2op0psu3" path="res://Systems/text_animation.gd" id="24_n7dhk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2rhk"]
 shader = ExtResource("3_83jfa")
@@ -134,6 +136,13 @@ script = ExtResource("5_j1mdy")
 script = ExtResource("6_gp0nj")
 health_pickup_points = NodePath("../HealthPickupPoints")
 player_health = NodePath("../PlayerHealth")
+
+[node name="DeathManager" type="Node" parent="." unique_id=1680170247 node_paths=PackedStringArray("player_health", "transition_ui", "death_label", "player")]
+script = ExtResource("7_fib0g")
+player_health = NodePath("../PlayerHealth")
+transition_ui = NodePath("../CanvasLayer/TransitionUI")
+death_label = NodePath("../CanvasLayer/TransitionUI/Label")
+player = NodePath("../Player")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1076600132]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -947,6 +956,20 @@ script = ExtResource("18_75ydc")
 player_health = NodePath("../../PlayerHealth")
 
 [node name="TransitionUI" parent="CanvasLayer" unique_id=1629849581 instance=ExtResource("23_ts1ge")]
+
+[node name="Label" type="Label" parent="CanvasLayer/TransitionUI" unique_id=844491006]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+script = ExtResource("24_n7dhk")
 
 [node name="BackgroundGround" type="MeshInstance3D" parent="." unique_id=1272259489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3066237, 0)

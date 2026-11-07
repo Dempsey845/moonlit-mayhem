@@ -137,10 +137,6 @@ Button/styles/hover = SubResource("StyleBox_hover")
 Button/styles/normal = SubResource("StyleBox_normal")
 Button/styles/pressed = SubResource("StyleBox_pressed")
 
-[sub_resource type="SystemFont" id="SystemFont_title"]
-font_names = PackedStringArray("Georgia", "DejaVu Serif", "Times New Roman")
-font_weight = 700
-
 [sub_resource type="StyleBoxFlat" id="StyleBox_primary"]
 bg_color = Color(0.23, 0.18, 0.36, 0.98)
 border_width_left = 1
@@ -206,7 +202,7 @@ mouse_filter = 2
 theme = SubResource("Theme_menu")
 
 [node name="Menu" type="VBoxContainer" parent="MenuUI/Layout" unique_id=399925789]
-custom_minimum_size = Vector2(280, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
@@ -216,8 +212,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.91, 0.73, 1)
 theme_override_colors/font_outline_color = Color(0.08, 0.045, 0.13, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = SubResource("SystemFont_title")
-theme_override_font_sizes/font_size = 62
+theme_override_font_sizes/font_size = 74
 text = "MOONLIT
 MAYHEM"
 horizontal_alignment = 1

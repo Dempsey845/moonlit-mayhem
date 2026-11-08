@@ -15,7 +15,7 @@ signal moved
 @export var detection_height: float = 3.0
 
 @export_group("Light Cycle")
-@export var shrink_duration: float = 8.0
+@export var shrink_duration: float = 10.0
 @export var respawn_delay: float = 2.0
 
 @export var spawn_points: Array[Node3D] = []
@@ -37,7 +37,7 @@ var last_spawn_point: Node3D
 
 var starting_energy: float
 
-const MIN_ANGLE: float = 15.0
+const MIN_ANGLE: float = 12.0
 
 
 func _ready() -> void:

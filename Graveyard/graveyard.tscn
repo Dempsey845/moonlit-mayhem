@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cwwa4fkdp3rpt" path="res://Graveyard/Props/StonePillar/stone_pillar.tscn" id="7_jaj5c"]
 [ext_resource type="PackedScene" uid="uid://bp1hon3n50hnt" path="res://Graveyard/Props/Gate/Gate.glb" id="7_ux5rj"]
 [ext_resource type="PackedScene" uid="uid://q70xb5it24fc" path="res://Graveyard/Props/Cross/cross.tscn" id="8_83jfa"]
+[ext_resource type="Script" uid="uid://l27r271fpqxi" path="res://Systems/ghost_difficulty_manager.gd" id="8_jnynp"]
 [ext_resource type="PackedScene" uid="uid://df3q54ep8gaqq" path="res://Graveyard/Props/WallColumn/wall_column.tscn" id="8_n2rhk"]
 [ext_resource type="PackedScene" uid="uid://h8j0ix66kmqc" path="res://Graveyard/Props/StoneWall/stone_wall.tscn" id="9_n2rhk"]
 [ext_resource type="PackedScene" uid="uid://bjdwkm8e8x40k" path="res://Graveyard/Props/Tree/tree.tscn" id="10_kj6ab"]
@@ -76,6 +77,7 @@ as_normal_map = true
 bump_strength = 5.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrivr"]
+albedo_color = Color(0.18193737, 0.2799425, 0.14161795, 1)
 albedo_texture = SubResource("NoiseTexture2D_ux5rj")
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_yf8gw")
@@ -107,13 +109,14 @@ size = Vector3(20, 22.2, 20)
 
 [node name="Graveyard" type="Node3D" unique_id=378118441]
 
-[node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_spawner", "ghost_counter", "health_pickup_spawner")]
+[node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_spawner", "ghost_counter", "health_pickup_spawner", "ghost_difficulty_manager")]
 script = ExtResource("1_2m5em")
 moonlight = NodePath("../Moonlight")
 player = NodePath("../Player")
 ghost_spawner = NodePath("../GhostSpawner")
 ghost_counter = NodePath("../GhostCounter")
 health_pickup_spawner = NodePath("../HealthPickupSpawner")
+ghost_difficulty_manager = NodePath("../GhostDifficultyManager")
 
 [node name="UpgradeManager" type="Node" parent="." unique_id=1531840155 node_paths=PackedStringArray("player", "moonlight", "ghost_counter", "player_health")]
 script = ExtResource("2_kj6ab")
@@ -144,9 +147,13 @@ transition_ui = NodePath("../CanvasLayer/TransitionUI")
 death_label = NodePath("../CanvasLayer/TransitionUI/Label")
 player = NodePath("../Player")
 
+[node name="GhostDifficultyManager" type="Node" parent="." unique_id=475369485 node_paths=PackedStringArray("ghost_spawner")]
+script = ExtResource("8_jnynp")
+ghost_spawner = NodePath("../GhostSpawner")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1076600132]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_energy = 0.05
+light_energy = 0.2
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1206113737]

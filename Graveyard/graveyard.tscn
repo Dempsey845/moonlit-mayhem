@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://jgpdsyk3w48c" path="res://Graveyard/Props/GraveHouse/grave_house.tscn" id="21_yf8gw"]
 [ext_resource type="PackedScene" uid="uid://dl5hqwty7bu8c" path="res://Graveyard/transition_ui.tscn" id="23_ts1ge"]
 [ext_resource type="Script" uid="uid://3dim2op0psu3" path="res://Systems/text_animation.gd" id="24_n7dhk"]
+[ext_resource type="PackedScene" uid="uid://bkoilahkbg6tk" path="res://Systems/GameMenu/game_menu.tscn" id="28_jnynp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2rhk"]
 shader = ExtResource("3_83jfa")
@@ -1300,3 +1301,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 14)
 
 [node name="Marker3D8" type="Marker3D" parent="HealthPickupPoints" unique_id=729238627]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 8)
+
+[node name="GameMenu" parent="." unique_id=620855084 node_paths=PackedStringArray("transition_ui") instance=ExtResource("28_jnynp")]
+visible = false
+transition_ui = NodePath("../CanvasLayer/TransitionUI")

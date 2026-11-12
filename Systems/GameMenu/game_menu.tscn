@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://bkoilahkbg6tk"]
+
+[ext_resource type="Script" uid="uid://cxt42dg6f4yi1" path="res://Systems/GameMenu/game_menu.gd" id="1_dne5l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1rhy"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.96, 0.82, 0.57, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g1ie"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0.3, 0.24, 0.43, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.78, 0.69, 0.96, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofnyb"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0.075, 0.059, 0.14, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.34, 0.3, 0.47, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_npyc1"]
+default_font_size = 20
+Button/colors/font_color = Color(0.93, 0.9, 1, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_k1rhy")
+Button/styles/hover = SubResource("StyleBoxFlat_0g1ie")
+Button/styles/normal = SubResource("StyleBoxFlat_ofnyb")
+Button/styles/pressed = SubResource("StyleBoxFlat_0g1ie")
+CheckButton/colors/font_color = Color(0.93, 0.9, 1, 1)
+CheckButton/styles/focus = SubResource("StyleBoxFlat_k1rhy")
+CheckButton/styles/hover = SubResource("StyleBoxFlat_0g1ie")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_ofnyb")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_0g1ie")
+Label/colors/font_color = Color(0.93, 0.9, 1, 1)
+OptionButton/colors/font_color = Color(0.93, 0.9, 1, 1)
+OptionButton/styles/focus = SubResource("StyleBoxFlat_k1rhy")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_0g1ie")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_ofnyb")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_0g1ie")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_ofnyb")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dne5l"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0.075, 0.059, 0.14, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.34, 0.3, 0.47, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="GameMenu" type="CanvasLayer" unique_id=620855084]
+process_mode = 3
+script = ExtResource("1_dne5l")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=122296964]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.021, 0.016, 0.053, 0.8)
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1993808192]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource("Theme_npyc1")
+theme_override_constants/margin_left = 704
+theme_override_constants/margin_top = 384
+theme_override_constants/margin_right = 704
+theme_override_constants/margin_bottom = 384
+
+[node name="Panel" type="PanelContainer" parent="Margin" unique_id=78521532]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dne5l")
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/Panel" unique_id=1259563068]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Margin/Panel/Scroll" unique_id=1840025085]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Margin/Panel/Scroll/Content" unique_id=637962483]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.91, 0.73, 1)
+theme_override_font_sizes/font_size = 36
+text = "paused..."
+horizontal_alignment = 1
+
+[node name="Settings" type="Button" parent="Margin/Panel/Scroll/Content" unique_id=1813150210]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Settings"
+
+[node name="Menu" type="Button" parent="Margin/Panel/Scroll/Content" unique_id=373491415]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Menu
+"
+
+[node name="Quit" type="Button" parent="Margin/Panel/Scroll/Content" unique_id=2072534550]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Quit
+"
+
+[node name="Back" type="Button" parent="Margin/Panel/Scroll/Content" unique_id=2139198127]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Back"

@@ -87,9 +87,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = SubResource("Theme_thxuc")
-theme_override_constants/margin_left = 320
+theme_override_constants/margin_left = 500
 theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 320
+theme_override_constants/margin_right = 500
 theme_override_constants/margin_bottom = 64
 
 [node name="Panel" type="PanelContainer" parent="Margin" unique_id=708227409]

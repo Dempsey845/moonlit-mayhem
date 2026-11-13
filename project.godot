@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://cc8nvrfdbimj1"
 
 GameSettings="*uid://ctymdl5qr666t"
 UISounds="*uid://dp4ea1tjub2r6"
+BackgroundMusic="*uid://w77ttwpo8kl4"
 
 [display]
 

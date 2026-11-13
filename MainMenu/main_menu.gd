@@ -8,6 +8,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$MenuUI/Layout/Menu/Play.grab_focus()
 
+	BackgroundMusic.play_menu()
+
 func _play() -> void:
 	if gameplay_scene == null:
 		push_warning("Assign Gameplay Scene on MainMenu.")

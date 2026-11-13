@@ -66,10 +66,14 @@ func _process(delta: float) -> void:
 
 func _on_target_entered_light() -> void:
 	_set_moonlight_following(true)
+	BackgroundMusic.play_graveyard()
 
 
 func _on_target_exited_light() -> void:
 	_set_moonlight_following(false)
+
+	if ghost_spawner.active_ghosts > 0:
+		BackgroundMusic.play_chase()
 
 
 func _set_moonlight_following(following: bool) -> void:
@@ -118,3 +122,6 @@ func _spawn_wave_after_delay() -> void:
 		health_pickup_spawner.try_spawn_health_pickup()
 
 	ghost_difficulty_manager.increment_difficulty()
+
+	if !is_moonlight_following:
+		BackgroundMusic.play_chase()

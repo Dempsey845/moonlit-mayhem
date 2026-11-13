@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnfr02gvfscka" path="res://Systems/game_manager.gd" id="1_2m5em"]
 [ext_resource type="PackedScene" uid="uid://c5sh5wsrxb575" path="res://Player/player.tscn" id="1_puhq3"]
+[ext_resource type="Script" uid="uid://1swmj6cqa55b" path="res://Graveyard/graveyard.gd" id="1_tf1vb"]
 [ext_resource type="Script" uid="uid://bcxdautgfy4if" path="res://Systems/ghost_spawner.gd" id="2_1lelr"]
 [ext_resource type="Script" uid="uid://6e2tencrn2q0" path="res://Systems/upgrade_manager.gd" id="2_kj6ab"]
 [ext_resource type="Script" uid="uid://bc6q6c74okrly" path="res://Moonlight/moonlight.gd" id="2_rvh4u"]
@@ -109,6 +110,7 @@ material = SubResource("StandardMaterial3D_13qdw")
 size = Vector3(20, 22.2, 20)
 
 [node name="Graveyard" type="Node3D" unique_id=378118441]
+script = ExtResource("1_tf1vb")
 
 [node name="GameManager" type="Node" parent="." unique_id=204649578 node_paths=PackedStringArray("moonlight", "player", "ghost_spawner", "ghost_counter", "health_pickup_spawner", "ghost_difficulty_manager")]
 script = ExtResource("1_2m5em")

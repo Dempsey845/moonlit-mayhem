@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b3v3q1aqd3mqf" path="res://Player/player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://cdj56gwk2ea37" path="res://Player/pumpkin_visual.tscn" id="2_4ntmi"]
+[ext_resource type="AudioStream" uid="uid://24lqb3ivvsfn" path="res://Audio/SoundEffects/boing.wav" id="3_gwnis"]
+[ext_resource type="AudioStream" uid="uid://deekh4mir07xh" path="res://Audio/SoundEffects/footstep.wav" id="4_k53q1"]
+[ext_resource type="AudioStream" uid="uid://dgrq3txogym1v" path="res://Audio/SoundEffects/hit_player.mp3" id="5_k53q1"]
+[ext_resource type="AudioStream" uid="uid://cttq6t0p74qm4" path="res://Audio/SoundEffects/player_death.ogg" id="6_fhl08"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrivr"]
 height = 1.0
@@ -15,7 +19,6 @@ animation = &"move"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gwnis"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xrivr"]
-graph_offset = Vector2(-407.98346, 0.4875946)
 nodes/MoveBlend/node = SubResource("AnimationNodeBlend2_gwnis")
 nodes/MoveBlend/position = Vector2(60, 120)
 nodes/IdleAnimation/node = SubResource("AnimationNodeAnimation_4ntmi")
@@ -108,6 +111,34 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.7, 0.7, 0.7), Vector3(0.7, 0.841, 0.7), Vector3(0.7, 0.7, 0.7), Vector3(0.7, 0.5, 0.7), Vector3(0.7, 0.7, 0.7)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Step")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwnis"]
 _data = {
@@ -187,3 +218,24 @@ explosiveness = 0.75
 randomness = 0.46
 process_material = SubResource("ParticleProcessMaterial_xrivr")
 draw_pass_1 = SubResource("SphereMesh_13qdw")
+
+[node name="Boing" type="AudioStreamPlayer" parent="." unique_id=1068084530]
+stream = ExtResource("3_gwnis")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Step" type="AudioStreamPlayer" parent="." unique_id=999871571]
+stream = ExtResource("4_k53q1")
+volume_db = -20.0
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="HitPlayer" type="AudioStreamPlayer3D" parent="." unique_id=440861618]
+stream = ExtResource("5_k53q1")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="PlayerDeath" type="AudioStreamPlayer" parent="." unique_id=546815227]
+stream = ExtResource("6_fhl08")
+volume_db = -20.0
+bus = &"SFX"

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bqrjf1qf6agjn" path="res://Ghost/ghost.gd" id="1_sdx2j"]
 [ext_resource type="PackedScene" uid="uid://bjhw3wh82e0hh" path="res://Ghost/ghost_visual.tscn" id="2_uexgx"]
+[ext_resource type="AudioStream" uid="uid://cnam0m6ni0an0" path="res://Audio/SoundEffects/ghost_attack.mp3" id="3_bs0kc"]
+[ext_resource type="AudioStream" uid="uid://s52d22h23j4e" path="res://Audio/SoundEffects/ghost_dissolve.ogg" id="3_rhyd0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xrivr"]
 radius = 0.84765625
@@ -98,6 +100,20 @@ tracks/3/keys = {
 "method": &"attack"
 }]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rhyd0"]
 resource_name = "bob"
@@ -175,6 +191,12 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_bs0kc")
 autoplay = &"bob"
 
+[node name="AttackPlayer" type="AudioStreamPlayer3D" parent="Ghost" unique_id=1365415432]
+stream = ExtResource("3_bs0kc")
+volume_db = -5.0
+max_distance = 20.0
+bus = &"SFX"
+
 [node name="AttackArea" type="Area3D" parent="." unique_id=1120610829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.9)
 collision_layer = 0
@@ -182,3 +204,9 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=1209643459]
 shape = SubResource("SphereShape3D_gei8a")
+
+[node name="DissolvePlayer" type="AudioStreamPlayer3D" parent="." unique_id=1521759174]
+stream = ExtResource("3_rhyd0")
+volume_db = -10.0
+max_distance = 25.0
+bus = &"SFX"

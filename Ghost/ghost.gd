@@ -16,6 +16,7 @@ enum State { CHASE, FLEE, DEAD }
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var ghost_visual: GhostVisual = $Ghost
 @onready var attack_area: Area3D = $AttackArea
+@onready var dissolve_player: AudioStreamPlayer3D = $DissolvePlayer
 
 var state: State = State.DEAD
 var repath_timer: float = 0.0
@@ -175,6 +176,8 @@ func die() -> void:
 
 	set_deferred("collision_layer", 0)
 	set_deferred("collision_mask", 0)
+
+	dissolve_player.play()
 
 	ghost_visual.play_death_effect()
 

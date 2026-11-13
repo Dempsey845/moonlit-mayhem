@@ -24,6 +24,8 @@ extends CharacterBody3D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var hit_particles: GPUParticles3D = $HitParticles
+@onready var step: AudioStreamPlayer = $Step
+@onready var boing: AudioStreamPlayer = $Boing
 
 var move_blend: float = 0.0
 
@@ -33,6 +35,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	health.damaged.connect(_on_damaged)
+
+	health.died.connect(func(): $PlayerDeath.play())
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -79,6 +83,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0.0
 
+	if velocity == Vector3.ZERO:
+		boing.stop()
+		step.stop()
+
 	move_and_slide()
 
 	var horizontal_speed: float = Vector2(velocity.x, velocity.z).length()
@@ -94,3 +102,4 @@ func _physics_process(delta: float) -> void:
 
 func _on_damaged(_amount: int):
 	hit_particles.emitting = true
+	$HitPlayer.play()

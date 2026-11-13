@@ -10,6 +10,8 @@ extends CanvasLayer
 var can_open: bool = true
 
 func _ready() -> void:
+	UISounds.bind_controls(self)
+
 	settings_button.pressed.connect(func():
 		open_settings()
 	)
@@ -17,6 +19,7 @@ func _ready() -> void:
 	menu_button.pressed.connect(func():
 		can_open = false
 		get_tree().paused = false
+		visible = false
 		await transition_ui.transition()
 		get_tree().change_scene_to_file("res://MainMenu/main_menu.tscn")
 	)

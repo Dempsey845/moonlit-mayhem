@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dbyfdoyyhd0d4" path="res://Graveyard/graveyard.tscn" id="2_kbpwf"]
 [ext_resource type="PackedScene" uid="uid://q70xb5it24fc" path="res://Graveyard/Props/Cross/cross.tscn" id="3_5de1l"]
 [ext_resource type="PackedScene" uid="uid://dl5hqwty7bu8c" path="res://Graveyard/transition_ui.tscn" id="6_kbpwf"]
+[ext_resource type="Script" uid="uid://dxdpg8g0spvm7" path="res://MainMenu/menu_ui.gd" id="6_r0x8f"]
 [ext_resource type="Script" uid="uid://ctkrfuqe12ffl" path="res://Settings/main_menu_settings_bridge.gd" id="settings_bridge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3w4mj"]
@@ -185,6 +186,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3066237, 0)
 mesh = SubResource("ArrayMesh_5de1l")
 
 [node name="MenuUI" type="CanvasLayer" parent="." unique_id=1005843932]
+script = ExtResource("6_r0x8f")
 
 [node name="Scrim" type="ColorRect" parent="MenuUI" unique_id=967378161]
 material = SubResource("ShaderMaterial_scrim")

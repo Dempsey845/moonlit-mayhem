@@ -28,6 +28,8 @@ func _ready() -> void:
 
 	_bind_controls()
 
+	UISounds.bind_controls(self)
+
 func _bind_controls() -> void:
 	_bind_toggle(content.get_node("FullscreenRow/Control"), "fullscreen")
 	_bind_toggle(content.get_node("VSyncRow/Control"), "vsync")

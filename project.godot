@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://cc8nvrfdbimj1"
 [autoload]
 
 GameSettings="*uid://ctymdl5qr666t"
+UISounds="*uid://dp4ea1tjub2r6"
 
 [display]
 

@@ -15,6 +15,8 @@ enum ShrineType {
 
 @onready var interact_area: Area3D = $InteractArea
 
+@onready var upgrade_player: AudioStreamPlayer3D = $UpgradePlayer
+
 var player_in_interact_area: bool = false
 
 var active: bool = true
@@ -46,12 +48,16 @@ func interact():
 	if !active:
 		return
 
+	if upgrade_player.playing:
+		return
+
 	if upgrade_manager.try_apply_upgrade(shrine_type as UpgradeManager.UpgradeType):
 		if upgrade_manager.is_upgrade_maxed(shrine_type as UpgradeManager.UpgradeType):
 			shrine_visual.hide_outline()
 			shrine_visual.hide_amount()
 			shrine_visual.hide_shrine_light()
 			active = false
+		upgrade_player.play()			
 		shrine_visual.fill()
 		_update_cost_label()
 	else:

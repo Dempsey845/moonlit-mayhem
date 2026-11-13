@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cocf54mlrcd2" path="res://Shrine/shrine.gd" id="1_asdbm"]
 [ext_resource type="PackedScene" uid="uid://s31ryerrdth" path="res://Shrine/shrine_visual.tscn" id="1_snjfn"]
+[ext_resource type="AudioStream" uid="uid://spfswkkhgkmp" path="res://Audio/SoundEffects/upgrade.mp3" id="3_ua745"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
 size = Vector3(3.8293946, 2.4, 3.9294922)
@@ -25,3 +26,9 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea" unique_id=838684352]
 shape = SubResource("SphereShape3D_xrivr")
+
+[node name="UpgradePlayer" type="AudioStreamPlayer3D" parent="." unique_id=402327232]
+stream = ExtResource("3_ua745")
+volume_db = -20.0
+max_distance = 25.0
+bus = &"SFX"

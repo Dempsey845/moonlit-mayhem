@@ -17,20 +17,19 @@ enum ShrineType {
 
 @onready var upgrade_player: AudioStreamPlayer3D = $UpgradePlayer
 
-var player_in_interact_area: bool = false
-
 var active: bool = true
 
 func _ready() -> void:
 	show_correct_visual()
+	set_process_unhandled_input(false)
 
 	interact_area.body_entered.connect(_on_interact_area_body_entered)
 	interact_area.body_exited.connect(_on_interact_area_body_exited)
 
 	shrine_visual.max_uses = upgrade_manager.get_max_upgrades(shrine_type as UpgradeManager.UpgradeType)
 
-func _process(_delta: float) -> void:
-	if player_in_interact_area and Input.is_action_just_pressed("interact"):
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact") and not event.is_echo():
 		interact()
 
 func show_correct_visual():
@@ -67,7 +66,7 @@ func _on_interact_area_body_entered(body: Node3D):
 	if body is not Player:
 		return
 
-	player_in_interact_area = true
+	set_process_unhandled_input(true)
 
 	if !upgrade_manager.is_upgrade_maxed(shrine_type as UpgradeManager.UpgradeType):
 		shrine_visual.show_outline()
@@ -80,7 +79,7 @@ func _on_interact_area_body_exited(body: Node3D):
 	if body is not Player:
 		return
 
-	player_in_interact_area = false
+	set_process_unhandled_input(false)
 
 	shrine_visual.hide_outline()
 	shrine_visual.hide_amount()

@@ -7,6 +7,10 @@ extends NavigationObstacle3D
 var previous_angle: float
 
 func _ready() -> void:
+	set_process(enabled)
+	if not enabled:
+		avoidance_enabled = false
+		return
 	previous_angle = moonlight.spot_angle
 
 	_on_moonlight_angle_changed(moonlight.starting_angle)
@@ -18,7 +22,7 @@ func _ready() -> void:
 	)
 
 	moonlight.moved.connect(func():
-		avoidance_enabled = enabled and true
+		avoidance_enabled = true
 	)
 
 func _process(_delta: float) -> void:

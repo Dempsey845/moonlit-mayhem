@@ -12,6 +12,8 @@ extends Node3D
 @onready var shrine_light: OmniLight3D = $OmniLight3D
 @onready var bowl_fill: MeshInstance3D = $BowlFill
 
+var outline_material: ShaderMaterial
+
 var current_uses: int = 0
 var max_uses: int
 
@@ -26,6 +28,8 @@ var fill_max_y: float = 0.1
 var _shrine_light_tween: Tween
 
 func _ready() -> void:
+	outline_material = shrine_mesh.material_overlay.duplicate() as ShaderMaterial
+	shrine_mesh.material_overlay = null
 	ghost_amount_label.visible = false
 	ghost_icon.visible = false
 
@@ -44,25 +48,20 @@ func hide_amount(duration: float = 0.3) -> void:
 	_set_icon_transparency(1.0, duration)
 
 func _set_outline_strength(target: float, duration: float) -> void:
-	var material := shrine_mesh.material_overlay as ShaderMaterial
-
-	if not material:
+	if target == 0.0 and shrine_mesh.material_overlay == null:
 		return
 
 	if outline_tween:
 		outline_tween.kill()
 
+	shrine_mesh.material_overlay = outline_material
 	outline_tween = create_tween()
 	outline_tween.set_trans(Tween.TRANS_SINE)
 	outline_tween.set_ease(Tween.EASE_IN_OUT)
+	outline_tween.tween_property(outline_material, "shader_parameter/outline_strength", target, duration)
+	if target == 0.0:
+		outline_tween.tween_callback(func(): shrine_mesh.material_overlay = null)
 
-	outline_tween.tween_method(
-		func(value: float):
-			shrine_mesh.set_instance_shader_parameter("outline_strength", value),
-		float(shrine_mesh.get_instance_shader_parameter("outline_strength")),
-		target,
-		duration
-	)
 
 func _set_amount_transparency(target: float, duration: float) -> void:
 	if amount_tween:

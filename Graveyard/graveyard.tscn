@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://ctyl26qjlbijr" path="res://Graveyard/transition_camera.gd" id="17_gp0nj"]
 [ext_resource type="Script" uid="uid://bqsobdmoj43ij" path="res://Player/Health/health_ui.gd" id="18_75ydc"]
 [ext_resource type="PackedScene" uid="uid://ctfof61m045vr" path="res://Graveyard/Background/tree_billboard.tscn" id="19_j1mdy"]
-[ext_resource type="PackedScene" uid="uid://bmhyaqaoxgws8" path="res://Graveyard/Background/grass_billboard.tscn" id="20_75ydc"]
+[ext_resource type="ArrayMesh" path="res://Graveyard/Background/grass_cards.tres" id="20_75ydc"]
 [ext_resource type="PackedScene" uid="uid://jgpdsyk3w48c" path="res://Graveyard/Props/GraveHouse/grave_house.tscn" id="21_yf8gw"]
 [ext_resource type="PackedScene" uid="uid://dl5hqwty7bu8c" path="res://Graveyard/transition_ui.tscn" id="23_ts1ge"]
 [ext_resource type="Script" uid="uid://3dim2op0psu3" path="res://Systems/text_animation.gd" id="24_n7dhk"]
@@ -119,6 +119,54 @@ roughness = 0.8
 [sub_resource type="BoxMesh" id="BoxMesh_xrivr"]
 material = SubResource("StandardMaterial3D_13qdw")
 size = Vector3(20, 22.2, 20)
+
+[sub_resource type="MultiMesh" id="MultiMesh_BackgroundGrass_0_0"]
+transform_format = 1
+mesh = ExtResource("20_75ydc")
+instance_count = 7
+buffer = PackedFloat32Array(1.5, 0, 0, -23, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -24, 1.5, 0, 0, -28, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -8, 1.5, 0, 0, -25, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -18, 1.5, 0, 0, -37, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -5, 1.5, 0, 0, -38, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -16, 1.5, 0, 0, -11, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -38, 1.5, 0, 0, -7, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -27)
+
+[sub_resource type="MultiMesh" id="MultiMesh_BackgroundGrass_0_1"]
+transform_format = 1
+mesh = ExtResource("20_75ydc")
+instance_count = 9
+buffer = PackedFloat32Array(1.5, 0, 0, -29, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 6, 1.5, 0, 0, -28, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 14, 1.5, 0, 0, -22, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 25, 1.5, 0, 0, -3, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 29, 1.5, 0, 0, -7, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 24, 1.5, 0, 0, -14, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 27, 1.5, 0, 0, -23, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 29, 1.5, 0, 0, -34, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 15, 1.5, 0, 0, -40, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 7)
+
+[sub_resource type="MultiMesh" id="MultiMesh_BackgroundGrass_1_0"]
+transform_format = 1
+mesh = ExtResource("20_75ydc")
+instance_count = 7
+buffer = PackedFloat32Array(1.5, 0, 0, 5, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -36, 1.5, 0, 0, 6, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -27, 1.5, 0, 0, 12, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -42, 1.5, 0, 0, 24, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -32, 1.5, 0, 0, 27, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -19, 1.5, 0, 0, 33, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -5, 1.5, 0, 0, 26, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, -2)
+
+[sub_resource type="MultiMesh" id="MultiMesh_BackgroundGrass_1_1"]
+transform_format = 1
+mesh = ExtResource("20_75ydc")
+instance_count = 9
+buffer = PackedFloat32Array(1.5, 0, 0, 32, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 12, 1.5, 0, 0, 21, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 26, 1.5, 0, 0, 10, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 25, 1.5, 0, 0, 8, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 34, 1.5, 0, 0, 13, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 29, 1.5, 0, 0, 18, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 34, 1.5, 0, 0, 29, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 29, 1.5, 0, 0, 37, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 21, 1.5, 0, 0, 26, 0, 1.5, 0, -0.45683745, 0, 0, 1.5, 16)
+
+[sub_resource type="MultiMesh" id="MultiMesh_Grass_0_0"]
+transform_format = 1
+mesh = ExtResource("20_75ydc")
+instance_count = 5
+buffer = PackedFloat32Array(1.5, 0, 0, -7, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -5, 1.5, 0, 0, -13, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -4, 1.5, 0, 0, -13, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -12, 1.5, 0, 0, -4, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -17, 1.5, 0, 0, -2, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -9)
+
+[sub_resource type="MultiMesh" id="MultiMesh_Grass_0_1"]
+transform_format = 1
+mesh = ExtResource("20_75ydc")
+instance_count = 3
+buffer = PackedFloat32Array(1.5, 0, 0, -7, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, 14, 1.5, 0, 0, -14, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, 12, 1.5, 0, 0, -4, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, 6)
+
+[sub_resource type="MultiMesh" id="MultiMesh_Grass_1_0"]
+transform_format = 1
+mesh = ExtResource("20_75ydc")
+instance_count = 4
+buffer = PackedFloat32Array(1.5, 0, 0, 14, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -5, 1.5, 0, 0, 12, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -17, 1.5, 0, 0, 2, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -1, 1.5, 0, 0, 9, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, -2)
+
+[sub_resource type="MultiMesh" id="MultiMesh_Grass_1_1"]
+transform_format = 1
+mesh = ExtResource("20_75ydc")
+instance_count = 2
+buffer = PackedFloat32Array(1.5, 0, 0, 10, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, 14, 1.5, 0, 0, 12, 0, 1.5, 0, 0.5431626, 0, 0, 1.5, 2)
 
 [node name="Graveyard" type="Node3D" unique_id=378118441]
 script = ExtResource("1_tf1vb")
@@ -1222,146 +1270,40 @@ mesh = SubResource("BoxMesh_xrivr")
 [node name="Grass" type="Node3D" parent="." unique_id=483395112]
 metadata/_edit_lock_ = true
 
-[node name="GrassBillboard" parent="Grass" unique_id=789482421 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7, 0.5431626, -5)
+[node name="Cards00" type="MultiMeshInstance3D" parent="Grass"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_Grass_0_0")
 
-[node name="GrassBillboard2" parent="Grass" unique_id=72251105 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -13, 0.5431626, -4)
+[node name="Cards01" type="MultiMeshInstance3D" parent="Grass"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_Grass_0_1")
 
-[node name="GrassBillboard3" parent="Grass" unique_id=1847697114 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -13, 0.5431626, -12)
+[node name="Cards10" type="MultiMeshInstance3D" parent="Grass"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_Grass_1_0")
 
-[node name="GrassBillboard4" parent="Grass" unique_id=1208144879 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10, 0.5431626, 14)
-
-[node name="GrassBillboard5" parent="Grass" unique_id=1226609393 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 12, 0.5431626, 2)
-
-[node name="GrassBillboard6" parent="Grass" unique_id=980627077 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7, 0.5431626, 14)
-
-[node name="GrassBillboard7" parent="Grass" unique_id=2062470317 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -14, 0.5431626, 12)
-
-[node name="GrassBillboard8" parent="Grass" unique_id=1305351376 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 14, 0.5431626, -5)
-
-[node name="GrassBillboard9" parent="Grass" unique_id=1967300327 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 12, 0.5431626, -17)
-
-[node name="GrassBillboard10" parent="Grass" unique_id=176111084 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4, 0.5431626, -17)
-
-[node name="GrassBillboard11" parent="Grass" unique_id=1563832206 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2, 0.5431626, -9)
-
-[node name="GrassBillboard12" parent="Grass" unique_id=429219730 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 2, 0.5431626, -1)
-
-[node name="GrassBillboard13" parent="Grass" unique_id=916649167 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 9, 0.5431626, -2)
-
-[node name="GrassBillboard14" parent="Grass" unique_id=1666916594 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4, 0.5431626, 6)
+[node name="Cards11" type="MultiMeshInstance3D" parent="Grass"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_Grass_1_1")
 
 [node name="BackgroundGrass" type="Node3D" parent="." unique_id=1510392724]
 metadata/_edit_lock_ = true
 
-[node name="GrassBillboard" parent="BackgroundGrass" unique_id=298171420 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -23, -0.45683745, -24)
+[node name="Cards00" type="MultiMeshInstance3D" parent="BackgroundGrass"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_BackgroundGrass_0_0")
 
-[node name="GrassBillboard2" parent="BackgroundGrass" unique_id=1984421415 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -28, -0.45683745, -8)
+[node name="Cards01" type="MultiMeshInstance3D" parent="BackgroundGrass"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_BackgroundGrass_0_1")
 
-[node name="GrassBillboard3" parent="BackgroundGrass" unique_id=2115794869 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -25, -0.45683745, -18)
+[node name="Cards10" type="MultiMeshInstance3D" parent="BackgroundGrass"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_BackgroundGrass_1_0")
 
-[node name="GrassBillboard4" parent="BackgroundGrass" unique_id=1689731818 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -29, -0.45683745, 6)
-
-[node name="GrassBillboard5" parent="BackgroundGrass" unique_id=1267459009 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -28, -0.45683745, 14)
-
-[node name="GrassBillboard6" parent="BackgroundGrass" unique_id=2006629716 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -22, -0.45683745, 25)
-
-[node name="GrassBillboard7" parent="BackgroundGrass" unique_id=53785586 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -3, -0.45683745, 29)
-
-[node name="GrassBillboard8" parent="BackgroundGrass" unique_id=1214055604 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7, -0.45683745, 24)
-
-[node name="GrassBillboard9" parent="BackgroundGrass" unique_id=58901093 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -14, -0.45683745, 27)
-
-[node name="GrassBillboard10" parent="BackgroundGrass" unique_id=1274223287 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -23, -0.45683745, 29)
-
-[node name="GrassBillboard11" parent="BackgroundGrass" unique_id=1533713601 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -34, -0.45683745, 15)
-
-[node name="GrassBillboard12" parent="BackgroundGrass" unique_id=499123975 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -40, -0.45683745, 7)
-
-[node name="GrassBillboard13" parent="BackgroundGrass" unique_id=445114872 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -37, -0.45683745, -5)
-
-[node name="GrassBillboard14" parent="BackgroundGrass" unique_id=663691526 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -38, -0.45683745, -16)
-
-[node name="GrassBillboard15" parent="BackgroundGrass" unique_id=857410111 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -11, -0.45683745, -38)
-
-[node name="GrassBillboard16" parent="BackgroundGrass" unique_id=376494107 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7, -0.45683745, -27)
-
-[node name="GrassBillboard17" parent="BackgroundGrass" unique_id=260353973 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 5, -0.45683745, -36)
-
-[node name="GrassBillboard18" parent="BackgroundGrass" unique_id=1565327582 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 6, -0.45683745, -27)
-
-[node name="GrassBillboard19" parent="BackgroundGrass" unique_id=519400633 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 12, -0.45683745, -42)
-
-[node name="GrassBillboard20" parent="BackgroundGrass" unique_id=1280082035 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 24, -0.45683745, -32)
-
-[node name="GrassBillboard21" parent="BackgroundGrass" unique_id=987667949 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 27, -0.45683745, -19)
-
-[node name="GrassBillboard22" parent="BackgroundGrass" unique_id=985748851 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 33, -0.45683745, -5)
-
-[node name="GrassBillboard23" parent="BackgroundGrass" unique_id=993261594 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 32, -0.45683745, 12)
-
-[node name="GrassBillboard24" parent="BackgroundGrass" unique_id=496436228 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 21, -0.45683745, 26)
-
-[node name="GrassBillboard25" parent="BackgroundGrass" unique_id=781920104 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10, -0.45683745, 25)
-
-[node name="GrassBillboard26" parent="BackgroundGrass" unique_id=1543754515 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 8, -0.45683745, 34)
-
-[node name="GrassBillboard27" parent="BackgroundGrass" unique_id=703361259 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 13, -0.45683745, 29)
-
-[node name="GrassBillboard28" parent="BackgroundGrass" unique_id=1407562272 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 18, -0.45683745, 34)
-
-[node name="GrassBillboard29" parent="BackgroundGrass" unique_id=919904928 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 29, -0.45683745, 29)
-
-[node name="GrassBillboard30" parent="BackgroundGrass" unique_id=688977802 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 37, -0.45683745, 21)
-
-[node name="GrassBillboard31" parent="BackgroundGrass" unique_id=2037969175 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 26, -0.45683745, 16)
-
-[node name="GrassBillboard32" parent="BackgroundGrass" unique_id=1486604773 instance=ExtResource("20_75ydc")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 26, -0.45683745, -2)
+[node name="Cards11" type="MultiMeshInstance3D" parent="BackgroundGrass"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_BackgroundGrass_1_1")
 
 [node name="HealthPickupPoints" type="Node3D" parent="." unique_id=1572046064]
 

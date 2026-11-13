@@ -11,15 +11,16 @@ config_version=5
 [application]
 
 config/name="Moonlit Mayhem"
-run/main_scene="uid://b6i8gp02bp2t1"
+run/main_scene="res://MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [audio]
 
-buses/default_bus_layout="uid://cc8nvrfdbimj1"
+buses/default_bus_layout="res://default_bus_layout.tres"
 
 [autoload]
+GameLoader="*res://Systems/Loading/game_loader.gd"
 
 GameSettings="*uid://ctymdl5qr666t"
 UISounds="*uid://dp4ea1tjub2r6"
@@ -34,7 +35,11 @@ window/stretch/aspect="keep_width"
 
 [gui]
 
-theme/custom_font="uid://7wktwey6xngc"
+theme/custom_font="res://Fonts/SecretHalloween.ttf"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 
@@ -74,5 +79,6 @@ interact={
 3d/physics_engine="Jolt Physics"
 
 [rendering]
+renderer/rendering_method.web="gl_compatibility"
 
 rendering_device/driver.windows="d3d12"

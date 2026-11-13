@@ -3,7 +3,6 @@ extends Node3D
 
 @onready var ghost_mesh: MeshInstance3D = $Cylinder
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
-var death_material: ShaderMaterial
 
 var death_tween: Tween
 
@@ -22,7 +21,8 @@ func play_death_effect() -> void:
         0.8
     )
     death_tween.tween_callback(func():
-        animation_player.play("RESET")
+        hide()
+        animation_player.stop()
     )
 
 func reset_death_effect() -> void:

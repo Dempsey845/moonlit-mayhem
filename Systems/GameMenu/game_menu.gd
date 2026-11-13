@@ -34,7 +34,7 @@ func _ready() -> void:
 	)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") and can_open:
+	if event.is_action_pressed("ui_cancel") and can_open and not GameLoader.is_loading:
 		visible = !visible
 		get_tree().paused = visible
 

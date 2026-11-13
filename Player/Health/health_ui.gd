@@ -3,7 +3,7 @@ extends HBoxContainer
 
 @export var player_health: PlayerHealth
 
-var heart_image_rect_scene: PackedScene = preload("uid://bb07qog8o0xqa")
+var heart_image_rect_scene: PackedScene = preload("res://Player/Health/heart_image_rect.tscn")
 
 var _hearts: Array[Control] = []
 var _heart_tweens: Dictionary = {}

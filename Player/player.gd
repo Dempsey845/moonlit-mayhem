@@ -23,7 +23,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $CameraPivot/SpringArm3D/Camera3D
 
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var hit_particles: GPUParticles3D = $HitParticles
+@onready var hit_particles: Node3D = $HitParticles
 @onready var step: AudioStreamPlayer = $Step
 @onready var boing: AudioStreamPlayer = $Boing
 
@@ -31,6 +31,16 @@ var move_blend: float = 0.0
 
 func _ready() -> void:
 	spring_arm.add_excluded_object(get_rid())
+	if RenderingServer.get_current_rendering_method() == "gl_compatibility":
+		var gpu_particles := hit_particles as GPUParticles3D
+		var cpu_particles := CPUParticles3D.new()
+		cpu_particles.convert_from_particles(gpu_particles)
+		cpu_particles.transform = gpu_particles.transform
+		cpu_particles.emitting = false
+		cpu_particles.cast_shadow = gpu_particles.cast_shadow
+		gpu_particles.replace_by(cpu_particles)
+		gpu_particles.queue_free()
+		hit_particles = cpu_particles
 	# camera.make_current()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -101,5 +111,26 @@ func _physics_process(delta: float) -> void:
 	animation_tree.set("parameters/MoveBlend/blend_amount", move_blend)
 
 func _on_damaged(_amount: int):
-	hit_particles.emitting = true
+	_restart_hit_particles()
 	$HitPlayer.play()
+
+
+
+func _restart_hit_particles() -> void:
+	if hit_particles is GPUParticles3D:
+		(hit_particles as GPUParticles3D).restart()
+	else:
+		(hit_particles as CPUParticles3D).restart()
+
+
+func warm_up_hit_particles(view_camera: Camera3D) -> void:
+	var original_transform := hit_particles.transform
+	var original_process_mode := hit_particles.process_mode
+	hit_particles.process_mode = Node.PROCESS_MODE_ALWAYS
+	hit_particles.global_position = view_camera.to_global(Vector3(0.0, 0.0, -2.5))
+	_restart_hit_particles()
+	# Wait for a complete burst before moving the emitter back to the player.
+	var duration := float(hit_particles.get("lifetime")) * 2.0 + 0.1
+	await get_tree().create_timer(duration).timeout
+	hit_particles.transform = original_transform
+	hit_particles.process_mode = original_process_mode

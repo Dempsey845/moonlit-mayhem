@@ -3,7 +3,6 @@
 [ext_resource type="Shader" uid="uid://b1s6g5nshc3v4" path="res://Graveyard/moonlit_night_sky.gdshader" id="1_nhkf3"]
 [ext_resource type="Script" uid="uid://ctat35d8tcrv4" path="res://MainMenu/main_menu.gd" id="1_po2gx"]
 [ext_resource type="PackedScene" uid="uid://cwwa4fkdp3rpt" path="res://Graveyard/Props/StonePillar/stone_pillar.tscn" id="2_3w4mj"]
-[ext_resource type="PackedScene" uid="uid://dbyfdoyyhd0d4" path="res://Graveyard/graveyard.tscn" id="2_kbpwf"]
 [ext_resource type="PackedScene" uid="uid://q70xb5it24fc" path="res://Graveyard/Props/Cross/cross.tscn" id="3_5de1l"]
 [ext_resource type="PackedScene" uid="uid://dl5hqwty7bu8c" path="res://Graveyard/transition_ui.tscn" id="6_kbpwf"]
 [ext_resource type="Script" uid="uid://dxdpg8g0spvm7" path="res://MainMenu/menu_ui.gd" id="6_r0x8f"]
@@ -153,7 +152,6 @@ corner_radius_bottom_left = 8
 
 [node name="MainMenu" type="Node3D" unique_id=113184451 node_paths=PackedStringArray("transition_ui")]
 script = ExtResource("1_po2gx")
-gameplay_scene = ExtResource("2_kbpwf")
 transition_ui = NodePath("MenuUI/TransitionUI")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2088588539]

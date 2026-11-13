@@ -5,7 +5,7 @@ extends Node
 @export var player_health: PlayerHealth
 
 var health_pickup_spawn_points: Array[Marker3D] = []
-var health_pickup_scene: PackedScene = preload("uid://qpt3jh3sivml")
+var health_pickup_scene: PackedScene = preload("res://HealthPickup/health_pickup.tscn")
 
 var _pickups_by_spawn_point: Dictionary = {}
 

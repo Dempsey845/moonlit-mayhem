@@ -1,0 +1,27 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://cc2hew1rwwvg4"]
+
+[ext_resource type="Texture2D" uid="uid://usik628lxxj7" path="res://Graveyard/Background/GrassTexture.png" id="1_3uekr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1e47"]
+transparency = 2
+alpha_scissor_threshold = 0.45
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.08855995, 0.0885599, 0.0885599, 1)
+albedo_texture = ExtResource("1_3uekr")
+billboard_keep_scale = true
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAAAAAACAPwAAgD8AAAAAAAAAAAAAAAAAAIA/AACAPwAAAAAAAIA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAIA/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAAAAAACAPwAAgD8AAAAAAAAAAAAAAAA="),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAQADAAIABAAFAAYABQAHAAYACAAJAAoACQALAAoADAANAA4ADQAPAA4A"),
+"material": SubResource("StandardMaterial3D_w1e47"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAPwAAAL8AAAAAAAAAvwAAAL8AAAAAAAAAPwAAAD8AAAAAAAAAvwAAAD8AAAAALr27sgAAAL8AAAC/Lr27MgAAAL8AAAA/Lr27sgAAAD8AAAC/Lr27MgAAAD8AAAA/9AS1vgAAAL/yBLW+9AS1PgAAAL/yBLU+9AS1vgAAAD/yBLW+9AS1PgAAAD/yBLU+1rPdvgAAAL8AAIA+1rPdPgAAAL8AAIC+1rPdvgAAAD8AAIA+1rPdPgAAAD8AAIC+/3//f////7//f/9/////v/9//3////+//3//f////7/+//9/AAD+//7//38AAP7//v//fwAA/v/+//9/AAD+//7//z8AAP/f/v//PwAA/9/+//8/AAD/3/7//z8AAP/fAADZLtou/78AANku2i7/vwAA2S7aLv+/AADZLtou/78=")
+}]

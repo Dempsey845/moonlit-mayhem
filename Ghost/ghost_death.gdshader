@@ -40,15 +40,19 @@ void vertex() {
 
 void fragment() {
     float progress = clamp(death_progress, 0.0, 1.0);
-    vec3 p = local_position * noise_scale;
-    float noise_value = value_noise(p) * 0.7
-        + value_noise(p * 2.0 + vec3(17.0)) * 0.3;
-
+    float edge = 0.0;
     if (progress >= 1.0) {
         discard;
     }
-    if (progress > 0.0 && noise_value < progress) {
-        discard;
+    if (progress > 0.0) {
+        vec3 p = local_position * noise_scale;
+        float noise_value = value_noise(p) * 0.7
+            + value_noise(p * 2.0 + vec3(17.0)) * 0.3;
+        if (noise_value < progress) {
+            discard;
+        }
+        edge = 1.0 - smoothstep(progress, progress + edge_width, noise_value);
+        edge *= smoothstep(0.0, 0.08, progress);
     }
 
     vec3 base_color = body_color.rgb;
@@ -56,11 +60,6 @@ void fragment() {
         base_color *= texture(albedo_texture, UV).rgb;
     }
 
-    float edge = 0.0;
-    if (progress > 0.0) {
-        edge = 1.0 - smoothstep(progress, progress + edge_width, noise_value);
-        edge *= smoothstep(0.0, 0.08, progress);
-    }
     ALBEDO = mix(base_color, edge_color.rgb, edge);
     EMISSION = edge_color.rgb * edge * edge_energy;
     ROUGHNESS = 1.0;

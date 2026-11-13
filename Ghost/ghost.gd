@@ -37,6 +37,11 @@ func _ready() -> void:
 	original_collision_mask = collision_mask
 
 	start_position = global_position
+	set_physics_process(false)
+	navigation_agent.avoidance_enabled = false
+	animation_player.stop()
+	ghost_visual.hide()
+	_set_collisions_active(false)
 
 	navigation_agent.velocity_computed.connect(_on_velocity_computed)
 
@@ -181,8 +186,8 @@ func die() -> void:
 	velocity = Vector3.ZERO
 	set_physics_process(false)
 
-	set_deferred("collision_layer", 0)
-	set_deferred("collision_mask", 0)
+	navigation_agent.avoidance_enabled = false
+	_set_collisions_active(false)
 
 	dissolve_player.play()
 
@@ -200,20 +205,24 @@ func revive(start_state: State) -> void:
 	state = start_state
 
 	ghost_visual.reset_death_effect()
+	ghost_visual.show()
 
 	navigation_agent.target_position = start_position
 
-	set_deferred("collision_layer", original_collision_layer)
-	set_deferred("collision_mask", original_collision_mask)
+	_set_collisions_active(true)
+	navigation_agent.avoidance_enabled = true
 
 	animation_player.play("revive")
 
 	set_physics_process(true)
 
-	await animation_player.animation_finished
-
-	animation_player.play("bob")
 	
+func _set_collisions_active(enabled: bool) -> void:
+	set_deferred("collision_layer", original_collision_layer if enabled else 0)
+	set_deferred("collision_mask", original_collision_mask if enabled else 0)
+	attack_area.set_deferred("monitoring", enabled)
+
+
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	if _player_dead:
 		return
@@ -255,6 +264,9 @@ func _start_attack() -> void:
 
 
 func _on_animation_finished(animation_name: StringName) -> void:
+	if animation_name == &"revive" and state != State.DEAD:
+		animation_player.play(&"bob")
+		return
 	if animation_name != &"attack" or not is_attacking:
 		return
 

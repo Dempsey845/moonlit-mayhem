@@ -41,7 +41,7 @@ func _ready() -> void:
 		ghost_spawner.max_ghosts
 	)
 
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0, false).timeout
 
 	_spawn_wave_after_delay()
 
@@ -104,7 +104,7 @@ func _spawn_wave_after_delay() -> void:
 		return
 
 	_spawn_pending = true
-	await get_tree().create_timer(SPAWN_DELAY).timeout
+	await get_tree().create_timer(SPAWN_DELAY, false).timeout
 
 	if not is_instance_valid(ghost_spawner):
 		_spawn_pending = false

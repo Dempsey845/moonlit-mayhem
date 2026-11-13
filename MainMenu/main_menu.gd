@@ -1,28 +1,32 @@
 extends Node3D
 
-@export var gameplay_scene: PackedScene
-@export var settings_scene: PackedScene
+@export_file("*.tscn") var gameplay_scene_path := "res://Graveyard/graveyard.tscn"
 @export var transition_ui: TransitionUI
+
+@onready var menu: VBoxContainer = $MenuUI/Layout/Menu
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$MenuUI/Layout/Menu/Play.grab_focus()
-
 	BackgroundMusic.play_menu()
 
-func _play() -> void:
-	if gameplay_scene == null:
-		push_warning("Assign Gameplay Scene on MainMenu.")
-		return
-	await transition_ui.transition()
-	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_packed(gameplay_scene)
 
-func _settings() -> void:
-	if settings_scene == null:
-		push_warning("Assign Settings Scene on MainMenu.")
+func _play() -> void:
+	if GameLoader.is_loading:
 		return
-	get_tree().change_scene_to_packed(settings_scene)
+
+	for child in menu.get_children():
+		if child is Button:
+			child.disabled = true
+
+	if not await GameLoader.load_gameplay(gameplay_scene_path, transition_ui):
+		transition_ui.reveal()
+		for child in menu.get_children():
+			if child is Button:
+				child.disabled = false
+		$MenuUI/Layout/Menu/Play.grab_focus()
+
 
 func _quit() -> void:
 	get_tree().quit()

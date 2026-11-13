@@ -170,6 +170,8 @@ albedo_color = Color(0.87058824, 0.46666667, 0.2627451, 1)
 roughness = 0.7
 
 [sub_resource type="SphereMesh" id="SphereMesh_13qdw"]
+radial_segments = 8
+rings = 4
 material = SubResource("StandardMaterial3D_b1lj4")
 radius = 0.125
 height = 0.25
@@ -210,6 +212,7 @@ libraries/ = SubResource("AnimationLibrary_gwnis")
 
 [node name="HitParticles" type="GPUParticles3D" parent="." unique_id=69835328]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5714286, 0)
+cast_shadow = 0
 emitting = false
 amount = 6
 lifetime = 0.4

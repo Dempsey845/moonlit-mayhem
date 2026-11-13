@@ -10,6 +10,7 @@ render_priority = 0
 shader = ExtResource("2_ml85h")
 shader_parameter/outline_color = Color(0.6611114, 1, 0.63692135, 1)
 shader_parameter/outline_thickness = 0.0590000028025
+shader_parameter/outline_strength = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13qdw"]
 transparency = 1

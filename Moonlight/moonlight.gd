@@ -100,7 +100,7 @@ func _run_light_cycle() -> void:
 		_set_light_angle(starting_angle)
 
 		await get_tree().create_timer(
-			maxf(respawn_delay, 0.01)
+			maxf(respawn_delay, 0.01), false
 		).timeout
 
 		respawn_delay += respawn_delay_increment

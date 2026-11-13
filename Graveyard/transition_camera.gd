@@ -11,7 +11,7 @@ func _ready() -> void:
 		if is_instance_valid(control):
 			control.modulate.a = 0.0
 	make_current()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, false).timeout
 
 	if not is_instance_valid(player) or not is_instance_valid(player.camera):
 		return

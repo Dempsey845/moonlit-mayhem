@@ -2,6 +2,12 @@ extends CanvasLayer
 
 signal closed
 
+const PRESETS := ["custom", "performance", "balanced", "quality"]
+const FPS_OPTIONS := [0, 30, 60, 120, 144]
+const SCALE_OPTIONS := [0.5, 0.65, 0.75, 0.85, 1.0]
+const MSAA_OPTIONS := [0, 1, 2, 3]
+const EFFECT_ROWS := {"ShadowsRow": "shadows"}
+
 var settings: Node
 var was_paused: bool
 var previous_mouse_mode: int
@@ -31,26 +37,57 @@ func _ready() -> void:
 	UISounds.bind_controls(self)
 
 func _bind_controls() -> void:
-	_bind_toggle(content.get_node("FullscreenRow/Control"), "fullscreen")
+	var preset: OptionButton = content.get_node("PresetRow/Control")
+	preset.set_item_disabled(0, true)
+	preset.item_selected.connect(func(index: int):
+		settings.set_graphics_preset(PRESETS[index])
+		_refresh_graphics()
+	)
+
+	var fullscreen: CheckButton = content.get_node("FullscreenRow/Control")
+	_bind_toggle(fullscreen, "fullscreen")
+	if OS.has_feature("web"):
+		fullscreen.set_pressed_no_signal(DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN)
+	content.get_node("VSyncRow").visible = not OS.has_feature("web")
 	_bind_toggle(content.get_node("VSyncRow/Control"), "vsync")
-	_bind_option(content.get_node("FPSRow/Control"), "fps", [0, 30, 60, 120, 144])
-	_bind_option(content.get_node("ScaleRow/Control"), "scale", [0.5, 0.75, 1.0])
-	_bind_option(content.get_node("MSAARow/Control"), "msaa", [0, 1, 2, 3])
+	_bind_option(content.get_node("FPSRow/Control"), "fps", FPS_OPTIONS)
+	_bind_option(content.get_node("ScaleRow/Control"), "scale", SCALE_OPTIONS)
+	_bind_option(content.get_node("MSAARow/Control"), "msaa", MSAA_OPTIONS)
+	for row: String in EFFECT_ROWS:
+		_bind_toggle(content.get_node(row + "/Control"), EFFECT_ROWS[row])
+	_refresh_graphics()
 
 	for bus_name in ["Master", "SFX", "Music"]:
 		var row := content.get_node(bus_name + "Row")
 		_bind_volume(row.get_node("Control"), row.get_node("Amount"), bus_name)
 
 	content.get_node("Back").pressed.connect(_close)
-	content.get_node("FullscreenRow/Control").grab_focus()
+	preset.grab_focus()
 
 func _bind_toggle(toggle: CheckButton, key: String) -> void:
 	toggle.set_pressed_no_signal(bool(settings.values[key]))
-	toggle.toggled.connect(func(value: bool): settings.set_setting(key, value))
+	toggle.toggled.connect(func(value: bool):
+		settings.set_setting(key, value)
+		_refresh_preset()
+	)
 
 func _bind_option(option: OptionButton, key: String, choices: Array) -> void:
-	option.select(maxi(choices.find(settings.values[key]), 0))
-	option.item_selected.connect(func(index: int): settings.set_setting(key, choices[index]))
+	option.item_selected.connect(func(index: int):
+		settings.set_setting(key, choices[index])
+		_refresh_preset()
+	)
+
+func _refresh_graphics() -> void:
+	content.get_node("FPSRow/Control").select(FPS_OPTIONS.find(settings.values["fps"]))
+	content.get_node("ScaleRow/Control").select(SCALE_OPTIONS.find(settings.values["scale"]))
+	content.get_node("MSAARow/Control").select(MSAA_OPTIONS.find(settings.values["msaa"]))
+	for row: String in EFFECT_ROWS:
+		var toggle: CheckButton = content.get_node(row + "/Control")
+		toggle.set_pressed_no_signal(settings.values[EFFECT_ROWS[row]])
+	_refresh_preset()
+
+func _refresh_preset() -> void:
+	content.get_node("PresetRow/Control").select(PRESETS.find(settings.get_graphics_preset()))
 
 func _bind_volume(slider: HSlider, amount: Label, bus_name: String) -> void:
 	slider.set_value_no_signal(float(settings.values[bus_name]) * 100.0)

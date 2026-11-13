@@ -20,7 +20,7 @@ enum UpgradeType {
 		"function_arguments": [1, true],
 		"target_node": player_health,
 		"initial_cost": 2,
-		"cost_increase": 2
+		"cost_increase": 4
 	},
 	UpgradeType.Speed: {
 		"max_upgrades": 5,
@@ -28,19 +28,19 @@ enum UpgradeType {
 		"property_name": &"speed",
 		"target_node": player,
 		"initial_cost": 3,
-		"cost_increase": 3
+		"cost_increase": 5
 	},
 	UpgradeType.Duration: {
-		"max_upgrades": 5,
-		"increase": 2,
+		"max_upgrades": 10,
+		"increase": 1,
 		"property_name": &"shrink_duration",
 		"target_node": moonlight,
 		"initial_cost": 2,
-		"cost_increase": 2
+		"cost_increase": 3
 	},
 	UpgradeType.Angle: {
-		"max_upgrades": 5,
-		"increase": 5,
+		"max_upgrades": 12,
+		"increase": 2,
 		"property_name": &"starting_angle",
 		"target_node": moonlight,
 		"initial_cost": 2,

@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://nhgr1t4pe7g6" path="res://Ghost/Ghost_Ghost_Normal.png" id="4_t215k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4hsr"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_8pvg6")
+shader_parameter/death_progress = 0.0
 shader_parameter/body_color = Color(1, 1, 1, 1)
 shader_parameter/use_albedo_texture = true
 shader_parameter/albedo_texture = ExtResource("3_8x6nh")
@@ -22,5 +24,5 @@ shader_parameter/noise_scale = 6.0
 [node name="GhostVisual" unique_id=1546254383 instance=ExtResource("1_jhyl4")]
 script = ExtResource("2_8x6nh")
 
-[node name="Cylinder" parent="." index="0" unique_id=188224111]
+[node name="Cylinder" parent="." index="0" unique_id=1631303642]
 material_override = SubResource("ShaderMaterial_n4hsr")

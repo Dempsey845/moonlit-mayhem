@@ -98,6 +98,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ofnyb")
 
 [node name="Scroll" type="ScrollContainer" parent="Margin/Panel" unique_id=1659765312]
 layout_mode = 2
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="Content" type="VBoxContainer" parent="Margin/Panel/Scroll" unique_id=341824541]
@@ -119,6 +120,29 @@ theme_override_colors/font_color = Color(0.98, 0.91, 0.73, 1)
 theme_override_font_sizes/font_size = 22
 text = "GRAPHICS"
 horizontal_alignment = 1
+
+[node name="PresetRow" type="HBoxContainer" parent="Margin/Panel/Scroll/Content" unique_id=342613736]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Margin/Panel/Scroll/Content/PresetRow" unique_id=1837350163]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Graphics preset"
+
+[node name="Control" type="OptionButton" parent="Margin/Panel/Scroll/Content/PresetRow" unique_id=692855152]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+tooltip_text = "Choose a preset or adjust the individual settings."
+item_count = 4
+popup/item_0/text = "Custom"
+popup/item_0/id = 0
+popup/item_1/text = "Performance"
+popup/item_1/id = 1
+popup/item_2/text = "Balanced"
+popup/item_2/id = 2
+popup/item_3/text = "Quality"
+popup/item_3/id = 3
 
 [node name="FullscreenRow" type="HBoxContainer" parent="Margin/Panel/Scroll/Content" unique_id=73354318]
 layout_mode = 2
@@ -185,13 +209,17 @@ text = "3D render scale"
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 selected = 1
-item_count = 3
+item_count = 5
 popup/item_0/text = "50%"
 popup/item_0/id = 0
-popup/item_1/text = "75%"
+popup/item_1/text = "65%"
 popup/item_1/id = 1
-popup/item_2/text = "100%"
+popup/item_2/text = "75%"
 popup/item_2/id = 2
+popup/item_3/text = "85%"
+popup/item_3/id = 3
+popup/item_4/text = "100%"
+popup/item_4/id = 4
 
 [node name="MSAARow" type="HBoxContainer" parent="Margin/Panel/Scroll/Content" unique_id=1110788654]
 layout_mode = 2
@@ -215,6 +243,20 @@ popup/item_2/text = "MSAA 4×"
 popup/item_2/id = 2
 popup/item_3/text = "MSAA 8×"
 popup/item_3/id = 3
+
+[node name="ShadowsRow" type="HBoxContainer" parent="Margin/Panel/Scroll/Content" unique_id=792861894]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Margin/Panel/Scroll/Content/ShadowsRow" unique_id=28888796]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shadows"
+
+[node name="Control" type="CheckButton" parent="Margin/Panel/Scroll/Content/ShadowsRow" unique_id=323712026]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+tooltip_text = "Toggle shadows cast by scene lights."
 
 [node name="AudioHeading" type="Label" parent="Margin/Panel/Scroll/Content" unique_id=903885931]
 layout_mode = 2

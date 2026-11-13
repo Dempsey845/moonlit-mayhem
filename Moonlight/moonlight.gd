@@ -39,6 +39,8 @@ var starting_energy: float
 
 const MIN_ANGLE: float = 12.0
 
+var respawn_delay_increment: float = 0.25
+
 
 func _ready() -> void:
 	starting_angle = spot_angle
@@ -100,6 +102,10 @@ func _run_light_cycle() -> void:
 		await get_tree().create_timer(
 			maxf(respawn_delay, 0.01)
 		).timeout
+
+		respawn_delay += respawn_delay_increment
+
+		respawn_delay = minf(respawn_delay, 10.0)
 
 
 func _fade_to(energy: float) -> void:

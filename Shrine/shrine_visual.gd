@@ -25,6 +25,10 @@ var fill_max_y: float = 0.1
 
 var _shrine_light_tween: Tween
 
+func _ready() -> void:
+	ghost_amount_label.visible = false
+	ghost_icon.visible = false
+
 func show_outline(duration: float = 0.2) -> void:
 	_set_outline_strength(1.0, duration)
 
@@ -64,6 +68,8 @@ func _set_amount_transparency(target: float, duration: float) -> void:
 	if amount_tween:
 		amount_tween.kill()
 
+	ghost_amount_label.visible = true
+
 	amount_tween = create_tween()
 	amount_tween.set_trans(Tween.TRANS_SINE)
 	amount_tween.set_ease(Tween.EASE_IN_OUT)
@@ -74,11 +80,18 @@ func _set_amount_transparency(target: float, duration: float) -> void:
 		ghost_amount_label.transparency,
 		target,
 		duration
+	).finished.connect(func():
+		if ghost_amount_label.transparency <= 0:
+			ghost_amount_label.visible = true
+		else:
+			ghost_amount_label.visible = false
 	)
 
 func _set_icon_transparency(target: float, duration: float) -> void:
 	if icon_tween:
 		icon_tween.kill()
+
+	ghost_icon.visible = true
 
 	icon_tween = create_tween()
 	icon_tween.set_trans(Tween.TRANS_SINE)
@@ -90,6 +103,11 @@ func _set_icon_transparency(target: float, duration: float) -> void:
 		ghost_icon.transparency,
 		target,
 		duration
+	).finished.connect(func():
+		if ghost_icon.transparency <= 0:
+			ghost_icon.visible = true
+		else:
+			ghost_icon.visible = false
 	)
 
 func set_ghost_amount_label(cost: int):

@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode cull_disabled;
 
-instance uniform float death_progress : hint_range(0.0, 1.0) = 0.0;
+uniform float death_progress : hint_range(0.0, 1.0) = 0.0;
 uniform vec4 body_color : source_color = vec4(0.82, 0.95, 1.0, 1.0);
 uniform bool use_albedo_texture = false;
 uniform sampler2D albedo_texture : source_color, filter_linear_mipmap;

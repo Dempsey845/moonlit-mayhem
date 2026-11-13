@@ -29,6 +29,8 @@ var start_position: Vector3
 var is_attacking: bool = false
 var attack_cooldown_timer: float = 0.0
 
+var _player_dead: bool = false
+
 
 func _ready() -> void:
 	original_collision_layer = collision_layer
@@ -40,9 +42,14 @@ func _ready() -> void:
 
 	animation_player.animation_finished.connect(_on_animation_finished)
 
+	if is_instance_valid(player_health):
+		player_health.died.connect(_on_player_died)
+		if player_health.current_health <= 0:
+			_on_player_died()
+
 
 func _physics_process(delta: float) -> void:
-	if state == State.DEAD:
+	if state == State.DEAD or _player_dead:
 		return
 
 	if not is_instance_valid(player):
@@ -208,6 +215,9 @@ func revive(start_state: State) -> void:
 	animation_player.play("bob")
 	
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
+	if _player_dead:
+		return
+
 	if (
 		state == State.DEAD
 		or is_attacking
@@ -256,9 +266,22 @@ func _on_animation_finished(animation_name: StringName) -> void:
 		animation_player.play("bob")
 
 func attack():
+	if _player_dead or state == State.DEAD or not is_attacking:
+		return
+		
 	var overlapping_bodies = attack_area.get_overlapping_bodies()
 
 	for body in overlapping_bodies:
 		if body is Player:
 			player_health.take_damage(1)
 			return
+
+func _on_player_died() -> void:
+	_player_dead = true
+	velocity = Vector3.ZERO
+	navigation_agent.velocity = Vector3.ZERO
+
+	if is_attacking:
+		is_attacking = false
+		if state != State.DEAD:
+			animation_player.play(&"bob")

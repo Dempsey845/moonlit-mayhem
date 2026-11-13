@@ -167,6 +167,8 @@ navigation_mesh = SubResource("NavigationMesh_xrivr")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" unique_id=1605754844]
 use_collision = true
+collision_layer = 17
+collision_mask = 3
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=56756119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3066237, 0)
